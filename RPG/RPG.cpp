@@ -15,7 +15,6 @@ void menu_glowne()
 
 }
 
-
 int main()
 {
 	Gra  gra;

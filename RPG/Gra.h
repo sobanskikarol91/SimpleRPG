@@ -11,14 +11,15 @@
 #include "Bandyta.h"
 #include "Amulet.h"
 #include "Pancerz.h"
+#include "Stan.h" // pozwala na przeslanie wiadomosci zwrotnej, wyboru gracza z lokalizacji
 using namespace std;
 
 #pragma once
 class Gra
 {
+	Gracz gracz;
 	// spis wszystkich lokalizacji w grze
 	vector <Lokalizacja> lokalizacje;
-
 public:
 	Gra()
 	{
@@ -31,7 +32,7 @@ public:
 
 		cout << "Stworz nowa postac" << endl << "Imie Twojego bohatera brzmi: ";
 		cin >> nazwa;
-		Gracz gracz = Gracz(nazwa, 2, 2, 2, 2, 1);
+		gracz = Gracz(nazwa, 2, 2, 2, 2, 1);
 		gracz.informacja();
 	}
 
@@ -52,7 +53,7 @@ public:
 			"Patrzac na polnocny zachod, dostrzegasz gesty las. Drzewa sa poranione i ociekajace zywica. Masz wrazenie jakby ktos niedawno ostrzyl sobie na nich pazury.",
 			Wilk("Wilk", 10, 4, 4, 4, 2),
 			Bron("Miecz", 10)));
-		
+
 		lokalizacje.push_back(Lokalizacja("Pole bitwy",
 			"Na Zachodzie dostrzegasz wydeptane na drodze glebokie slady po ludzkich butach. Jednego jestes pewien, ktos bardzo obladowany musial udac sie ta droga.",
 			Zbrojny("Zbrojny", 10, 4, 4, 4, 2),
@@ -64,7 +65,6 @@ public:
 			Amulet("Kamien teleportacyjny")));
 	}
 
-
 	void wybierz_droge()
 	{
 		cout << "Dotarles do rozwidlenia " << lokalizacje.size() << " sciezek, gdzie tym razem poprowadzi Cie przeznaczenie? " << endl << endl;
@@ -74,6 +74,41 @@ public:
 			cout << i << ") ";
 			lokalizacje[i].informacja();
 			cout << endl << endl;
+		}
+
+		int wybor;
+		cin >> wybor;
+	
+		// jezeli gracz wybral lokalizacje ktora jest w kolekcji posylamy adres do zmiennej "gracz"
+		if (wybor > 0 && wybor < lokalizacje.size())
+		{
+		STAN wynik = lokalizacje[wybor].wejdz_do_lokalizacji(&gracz);
+		wybierz_dzialanie_wyniku(wynik);
+		}
+		else
+			cout << "Nie ma takiej drogi!" << endl;
+	}
+
+	void wybierz_dzialanie_wyniku(STAN wynik)
+	{
+		switch (wynik)
+		{
+		case WYGRANA:
+		{
+			cout << "(Wygrana) Ha! Zabijalem juz za mniej!" << endl;
+			wybierz_droge();
+			break;
+		}
+		case UCIECZKA:
+		{
+			wybierz_droge();
+			break;
+		}
+		case PORAZKA:
+			cout << "(Przegrana) Mniam mniam, powiedzial potwor jedzacy Twoje cialo" << endl;
+			break;
+		default:
+			break;
 		}
 	}
 
