@@ -15,30 +15,12 @@ void menu_glowne()
 
 }
 
-void rozpocznij_gre()
-{
-	// TODO Sleep
-}
-
-void sprawdzenie_ekwipunku()
-{
-}
-
-void wybor_drogi_txt()
-{
-	int wybor =0;
-
-	cout << "Dotarles do rozwidlenia 5 sciezek, gdzie tym razem poprowadzi Cie przeznaczenie? " << endl;
-
-
-}
 
 int main()
 {
-	wybor_drogi_txt();
-	Gra  gra_rpg;
-	gra_rpg.stworz_postac();
-
+	Gra  gra;
+	//gra_rpg.stworz_postac();
+	gra.wybierz_droge();
 	srand(time(NULL));	// pozwala na losowanie psueudolosowych liczb, przyda sie przy  rzucie kostka
 	system("pause");
 	return 0;

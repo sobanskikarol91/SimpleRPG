@@ -1,8 +1,11 @@
+#include "Przedmiot.h"
+
 #pragma once
-class Bron
+class Bron : public Przedmiot
 {
+	int obrazenia;
 public:
-	Bron();
-	~Bron();
+	Bron() : Przedmiot() {};
+	Bron(string nazwa, int obrazenia) : Przedmiot(nazwa), obrazenia(obrazenia) {};
 };
 

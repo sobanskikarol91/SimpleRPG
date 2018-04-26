@@ -5,16 +5,18 @@ using namespace std;
 
 class Przedmiot
 {
-	string opis;
+private:
+	string nazwa;
 public:
-	Przedmiot();
-	void podnies();
-	void wyrzuc();
+	Przedmiot() {};
+	Przedmiot(string nazwa): nazwa(nazwa) {};
+
 	void zaloz();
 
-	void informacja()
+	string informacja()
 	{
-		cout << opis << endl;
+		return nazwa;
 	}
 };
+
 

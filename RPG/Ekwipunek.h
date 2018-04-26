@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
 #include "Przedmiot.h"
-#include <vector>
+#include <vector>    // dynamiczny pojemnik gdzie przechowujemy przedmioty
+
 using namespace std;
 
 
@@ -30,11 +31,14 @@ public:
 	void dodajPrzedmiot(Przedmiot nowyPrzedmiot)
 	{
 		przedmioty.push_back(nowyPrzedmiot);
+		cout << "Dodano: " << nowyPrzedmiot.informacja();
 	}
 
-	void usunPrzedmiot(Przedmiot nowyPrzedmiot)
+	void usunPrzedmiot(int pozycja)
 	{
-		przedmioty.pop_back();
+		// usuwamy z ekwipunku przedmiot na danej pozycji, wykorzystujemy do tego metode erase z klasy Vector
+		cout << "Usunieto:" << przedmioty[pozycja].informacja();
+		przedmioty.erase(przedmioty.begin() + pozycja);
 	}
 };
 
