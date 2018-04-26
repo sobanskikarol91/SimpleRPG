@@ -1,3 +1,0 @@
-﻿  RPG.cpp
-d:\repo\rpggame\rpg.cpp(19): warning C4065: switch statement contains 'default' but no 'case' labels
-  RPGGame.vcxproj -> D:\Repo\RPGGame\Debug\RPGGame.exe
