@@ -1,7 +1,7 @@
 #pragma once
 #include "Postac.h"
 #include "Ekwipunek.h"
-
+#include "windows.h"    // kolorowanie skladni
 class Gracz : public Postac
 {
 	Ekwipunek ekwipunek;
@@ -16,6 +16,23 @@ public:
 	void otrzymuje_przedmiot(Przedmiot * przedmiot)
 	{
 		ekwipunek.dodaj_przedmiot(przedmiot);
+	}
+
+	// ustawiamy domyslne wartosci, jezeli nie podamy argumentow to zostana przeslane domyslne
+	void zwieksz_poziom(int sila=1, int zrecznosc=1, int zycie=10)
+	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10 ); // koloruj 
+		cout << "********************************************" << endl;
+		cout << "NOWY POZIOM!" << endl;
+		cout << "sila  +" << sila << "   zrecznosc  +" << zrecznosc << "   zycie  +" << zycie  << endl;
+		cout << "********************************************" << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // koloruj na zloto
+		// argument i pole klasy nazywaja sie tak samo, this pozwala okreslic ze chodzi nam o pole klasy
+		this->zrecznosc += zrecznosc;
+		this->sila += sila;
+		this->zycie += zycie;
+
+		poziom++;
 	}
 
 	// metoda ta bierze pod uwage rowniez bonusy z ekwipunku

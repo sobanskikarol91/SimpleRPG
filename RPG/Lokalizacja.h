@@ -10,7 +10,6 @@
 #pragma once
 class Lokalizacja
 {
-	bool czy_zdobyta;  // przyda sie do sprawdzenia czy gracz juz zdobyl ta lokalizacje aby nie wchodzi tu ponownie
 	Przeciwnik przeciwnik;
 	Przedmiot przedmiot;
 	string nazwa;
@@ -18,7 +17,7 @@ class Lokalizacja
 public:
 	Lokalizacja() {};
 	Lokalizacja(string nazwa, string opis, Przeciwnik przeciwnik, Przedmiot przedmiot)
-		: nazwa(nazwa), opis(opis), przeciwnik(przeciwnik), przedmiot(przedmiot), czy_zdobyta(false) {}
+		: nazwa(nazwa), opis(opis), przeciwnik(przeciwnik), przedmiot(przedmiot) {}
 
 	// wypisujemy nazwe i opis danej lokalizacji
 	void informacja()
@@ -101,10 +100,7 @@ public:
 		if (sila_potwory >= sila_gracza)
 			return STAN::PORAZKA;
 		else
-		{
-			czy_zdobyta = true;
 			return STAN::WYGRANA; // udalo sie wygrac wiec zwracamy taki stan
-		}
 	}
 
 	STAN menu_wyboru_walki(Gracz * gracz)

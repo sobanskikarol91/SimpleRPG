@@ -32,7 +32,9 @@ public:
 
 		cout << "Stworz nowa postac" << endl << "Imie Twojego bohatera brzmi: ";
 		cin >> nazwa;
-		gracz = Gracz(nazwa, 2, 2, 2, 2, 1);
+
+		// wywolujemy konstruktor gracza podajac odpowiednie parametry
+		gracz = Gracz(nazwa, 20, 20, 20, 20, 10);
 		gracz.informacja();
 	}
 
@@ -82,19 +84,27 @@ public:
 		if (wybor > 0 && wybor < lokalizacje.size())
 		{
 			STAN wynik = lokalizacje[wybor].wejdz_do_lokalizacji(&gracz);
-			wybierz_dzialanie_wyniku(wynik);
+			wybierz_dzialanie_wyniku(wynik, wybor);
 		}
 		else
 			cout << "Nie ma takiej drogi!" << endl;
 	}
 
-	void wybierz_dzialanie_wyniku(STAN wynik)
+	// przekazujemy jako argumenty; stan oraz wybor lokalizacji gracza aby pozniej moc ja usunac gdy gracz wygral
+	void wybierz_dzialanie_wyniku(STAN wynik, int wybor)
 	{
 		switch (wynik)
 		{
 		case WYGRANA:
 		{
 			cout << "(Wygrana) Ha! Zabijalem juz za mniej!" << endl;
+
+			// zdobylismy ta lokalizacje juz, wiec usuwamy ja z listy aby wiecej nie pokazywala nam sie
+			// przy wyborze sciezki
+			lokalizacje.erase(lokalizacje.begin() + wybor);
+
+			// zwiekszamy poziom gracza po wygranej walce
+			gracz.zwieksz_poziom();
 			nacisnij_klawisz();
 			wybierz_droge();
 			break;
@@ -112,7 +122,6 @@ public:
 		default:
 			break;
 		}
-
 	}
 
 	void zapisz() {};
@@ -125,5 +134,6 @@ public:
 		int wybor;
 		cout << "nacisnij klawisz aby przejsc dalej" << endl;
 		cin >> wybor;
+		system("cls"); // czyscimy ekran
 	}
 };
