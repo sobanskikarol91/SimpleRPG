@@ -67,8 +67,6 @@ public:
 
 	void wybierz_droge()
 	{
-		cout << "Dotarles do rozwidlenia " << lokalizacje.size() << " sciezek, gdzie tym razem poprowadzi Cie przeznaczenie? " << endl << endl;
-
 		for (int i = 0; i < lokalizacje.size(); i++)
 		{
 			cout << i << ") ";
@@ -76,14 +74,15 @@ public:
 			cout << endl << endl;
 		}
 
+		cout << "Dotarles do rozwidlenia " << lokalizacje.size() << " sciezek, gdzie tym razem poprowadzi Cie przeznaczenie? " << endl << endl;
 		int wybor;
 		cin >> wybor;
-	
+
 		// jezeli gracz wybral lokalizacje ktora jest w kolekcji posylamy adres do zmiennej "gracz"
 		if (wybor > 0 && wybor < lokalizacje.size())
 		{
-		STAN wynik = lokalizacje[wybor].wejdz_do_lokalizacji(&gracz);
-		wybierz_dzialanie_wyniku(wynik);
+			STAN wynik = lokalizacje[wybor].wejdz_do_lokalizacji(&gracz);
+			wybierz_dzialanie_wyniku(wynik);
 		}
 		else
 			cout << "Nie ma takiej drogi!" << endl;
@@ -96,11 +95,14 @@ public:
 		case WYGRANA:
 		{
 			cout << "(Wygrana) Ha! Zabijalem juz za mniej!" << endl;
+			nacisnij_klawisz();
 			wybierz_droge();
 			break;
 		}
 		case UCIECZKA:
 		{
+			cout << "Udalo Ci sie bezpiecznie zawrocic" << endl;
+			nacisnij_klawisz();
 			wybierz_droge();
 			break;
 		}
@@ -110,9 +112,18 @@ public:
 		default:
 			break;
 		}
+
 	}
 
 	void zapisz() {};
 	void wczytaj() {};
 	void ruch() {};
+
+	// metoda ma jedynie za zadanie zatrzymac ekran do momentu az gracz wcisnie klawisz
+	void nacisnij_klawisz()
+	{
+		int wybor;
+		cout << "nacisnij klawisz aby przejsc dalej" << endl;
+		cin >> wybor;
+	}
 };

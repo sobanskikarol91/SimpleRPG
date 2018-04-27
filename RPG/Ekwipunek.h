@@ -31,7 +31,7 @@ public:
 	void dodaj_przedmiot(Przedmiot * nowyPrzedmiot)
 	{
 		przedmioty.push_back(*nowyPrzedmiot);
-		cout << "Dodano: " << (*nowyPrzedmiot).informacja();
+		cout << "Dodano: " << (*nowyPrzedmiot).informacja() << endl;
 	}
 
 	void usun_przedmiot(int pozycja)
@@ -50,7 +50,6 @@ public:
 		//	if (dynamic_cast<Bron*>(&przedmioty[i]))
 		//		bonus_obrazen+= przedmioty
 		//}
-	
 	}
 };
 
