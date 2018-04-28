@@ -13,7 +13,6 @@ void menu_glowne()
 
 	int wybor;
 	cin >> wybor;
-
 }
 
 int main()

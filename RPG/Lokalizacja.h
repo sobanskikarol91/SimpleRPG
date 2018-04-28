@@ -4,6 +4,7 @@
 #include "Przedmiot.h"
 #include "Stan.h"
 #include "Gracz.h"
+#include "Dodatki.h"    // przydadza sie funkcje wyboru
 #include "windows.h"    // kolorowanie skladni
 
 
@@ -39,8 +40,8 @@ public:
 		cout << "2) Walcz " << endl;
 		cout << "3) Zawroc " << endl;
 		
-		cin >> wybor;
-		system("cls"); // wyczysc ekran
+		wybor = wybierz_opcje(3,1);
+
 		switch (wybor)
 		{
 		case 1:
@@ -112,10 +113,7 @@ public:
 		cout << "1) (Walka) Zrobie Ci z lba popielniczke AGRRR!! " << endl;
 		cout << "2) (Ucieczka) Strasznie napakowany ten kolo, chyba wroce pozniej..." << endl;
 
-		int wybor;
-
-		cin >> wybor;
-		system("cls");
+		int wybor = wybierz_opcje();
 		switch (wybor)
 		{
 		case 1:
@@ -138,6 +136,5 @@ public:
 		}
 		}
 	}
-
 };
 

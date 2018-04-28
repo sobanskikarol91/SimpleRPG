@@ -19,7 +19,7 @@ public:
 		else
 		{
 			// wypisujemy informacje o kazdym przedmiocie w ekwpiunku gdy jakies sa
-			for ( int i = 0; i < przedmioty.size(); i++)
+			for (int i = 0; i < przedmioty.size(); i++)
 			{
 				przedmioty[i].informacja();
 				cout << "============" << endl;
@@ -50,6 +50,14 @@ public:
 		//	if (dynamic_cast<Bron*>(&przedmioty[i]))
 		//		bonus_obrazen+= przedmioty
 		//}
+	}
+
+	void menu_ekwipunku()
+	{
+		cout << "Co chcesz zrobic?" << endl;
+		cout << "1) Zaloz przedmiot" << endl;
+		cout << "2) Usun przedmiot" << endl;
+		cout << "3) Exit" << endl;
 	}
 };
 

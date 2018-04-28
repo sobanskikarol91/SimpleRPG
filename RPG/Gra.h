@@ -12,6 +12,7 @@
 #include "Amulet.h"
 #include "Pancerz.h"
 #include "Stan.h" // pozwala na przeslanie wiadomosci zwrotnej, wyboru gracza z lokalizacji
+#include "Dodatki.h"
 using namespace std;
 
 #pragma once
@@ -77,17 +78,12 @@ public:
 		}
 
 		cout << "Dotarles do rozwidlenia " << lokalizacje.size() << " sciezek, gdzie tym razem poprowadzi Cie przeznaczenie? " << endl << endl;
-		int wybor;
-		cin >> wybor;
+		
+		// wykorzystujemy dolaczona funkcje, posylamy maxymalna ilosc lokalizacji do wyboru, funkcja zwraca wybor gracza
+		int wybor = wybierz_opcje(lokalizacje.size());
 
-		// jezeli gracz wybral lokalizacje ktora jest w kolekcji posylamy adres do zmiennej "gracz"
-		if (wybor > 0 && wybor < lokalizacje.size())
-		{
-			STAN wynik = lokalizacje[wybor].wejdz_do_lokalizacji(&gracz);
-			wybierz_dzialanie_wyniku(wynik, wybor);
-		}
-		else
-			cout << "Nie ma takiej drogi!" << endl;
+		STAN wynik = lokalizacje[wybor].wejdz_do_lokalizacji(&gracz);
+		wybierz_dzialanie_wyniku(wynik, wybor);
 	}
 
 	// przekazujemy jako argumenty; stan oraz wybor lokalizacji gracza aby pozniej moc ja usunac gdy gracz wygral
@@ -124,16 +120,13 @@ public:
 		}
 	}
 
+	void sprawdzenie_ekwipunku()
+	{
+		Ekwipunek ekwipunek = gracz.pobierz_ekwipunek();
+		ekwipunek.przegladaj();
+	}
+
 	void zapisz() {};
 	void wczytaj() {};
 	void ruch() {};
-
-	// metoda ma jedynie za zadanie zatrzymac ekran do momentu az gracz wcisnie klawisz
-	void nacisnij_klawisz()
-	{
-		int wybor;
-		cout << "nacisnij klawisz aby przejsc dalej" << endl;
-		cin >> wybor;
-		system("cls"); // czyscimy ekran
-	}
 };

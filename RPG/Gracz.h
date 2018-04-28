@@ -2,12 +2,13 @@
 #include "Postac.h"
 #include "Ekwipunek.h"
 #include "windows.h"    // kolorowanie skladni
+
 class Gracz : public Postac
 {
 	Ekwipunek ekwipunek;
 public:
 	// domyslny konstruktor wywolujemy rowniez na liscie inicjalizacyjej konstruktor klasy bazowej
-	Gracz() : Postac() {};	
+	Gracz() : Postac() {};
 
 	// konstruktor z lista inicjalizacyjna sluzacy do tworzenia postaci gracza
 	Gracz(string nazwa, int zycie, int sila, int zrecznosc, int obrazenia, int poziom)
@@ -19,12 +20,12 @@ public:
 	}
 
 	// ustawiamy domyslne wartosci, jezeli nie podamy argumentow to zostana przeslane domyslne
-	void zwieksz_poziom(int sila=1, int zrecznosc=1, int zycie=10)
+	void zwieksz_poziom(int sila = 1, int zrecznosc = 1, int zycie = 10)
 	{
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10 ); // koloruj 
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10); // koloruj 
 		cout << "********************************************" << endl;
 		cout << "NOWY POZIOM!" << endl;
-		cout << "sila  +" << sila << "   zrecznosc  +" << zrecznosc << "   zycie  +" << zycie  << endl;
+		cout << "sila  +" << sila << "   zrecznosc  +" << zrecznosc << "   zycie  +" << zycie << endl;
 		cout << "********************************************" << endl;
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // koloruj na zloto
 		// argument i pole klasy nazywaja sie tak samo, this pozwala okreslic ze chodzi nam o pole klasy
@@ -41,5 +42,8 @@ public:
 		// TODO bonusy;
 		return sila + modyfikator_obrazen();
 	}
+
+	Ekwipunek pobierz_ekwipunek() { return ekwipunek; }
+
 };
 

@@ -7,6 +7,7 @@ class Przedmiot
 {
 private:
 	string nazwa;
+	bool wyposazony; // czy gracz aktualnie wykorzystuje przedmiot
 public:
 	Przedmiot() {};
 	Przedmiot(string nazwa): nazwa(nazwa) {};
@@ -17,7 +18,9 @@ public:
 	{
 		return nazwa;
 	}
-	
+
+	bool sprawdz_czy_wyposazony() { return wyposazony; }
+	void ustaw_wyposazony(bool stan) { wyposazony = stan; }	
 };
 
 

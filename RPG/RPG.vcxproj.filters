@@ -69,6 +69,9 @@
     <ClCompile Include="Stan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Dodatki.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gra.h">
@@ -120,6 +123,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Stan.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dodatki.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

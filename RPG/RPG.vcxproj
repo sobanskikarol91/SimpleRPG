@@ -118,6 +118,7 @@
     <ClCompile Include="Amulet.cpp" />
     <ClCompile Include="Bandyta.cpp" />
     <ClCompile Include="Bron.cpp" />
+    <ClCompile Include="Dodatki.cpp" />
     <ClCompile Include="Ekwipunek.cpp" />
     <ClCompile Include="Gra.cpp" />
     <ClCompile Include="Gracz.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="Amulet.h" />
     <ClInclude Include="Bandyta.h" />
     <ClInclude Include="Bron.h" />
+    <ClInclude Include="Dodatki.h" />
     <ClInclude Include="Ekwipunek.h" />
     <ClInclude Include="Gra.h" />
     <ClInclude Include="Gracz.h" />
