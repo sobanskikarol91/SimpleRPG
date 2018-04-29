@@ -35,8 +35,10 @@ public:
 		cin >> nazwa;
 
 		// wywolujemy konstruktor gracza podajac odpowiednie parametry
-		gracz = Gracz(nazwa, 20, 20, 20, 20, 10);
-		gracz.informacja();
+		Ekwipunek ekwipunek;
+		ekwipunek.dodaj_przedmiot(Bron("Miecz", 5));
+		ekwipunek.dodaj_przedmiot(Bron("Topor", 5));
+		gracz = Gracz(nazwa, 20, 20, 20, 20, 10, ekwipunek);
 	}
 
 	// Tworzymy lokalizacje nadajac im nazwe, opis, i potwora jaki strzerze to miejsce i przedmiot do zdobycia
@@ -70,6 +72,7 @@ public:
 
 	void wybierz_droge()
 	{
+		gracz.statystyki();
 		for (int i = 0; i < lokalizacje.size(); i++)
 		{
 			cout << i << ") ";
@@ -120,13 +123,38 @@ public:
 		}
 	}
 
-	void sprawdzenie_ekwipunku()
+	void menu_glowne()
 	{
-		Ekwipunek ekwipunek = gracz.pobierz_ekwipunek();
-		ekwipunek.przegladaj();
+		system("cls");
+		cout << "1) Panel bohatera" << endl;
+		cout << "2) Udaj sie w droge" << endl;
+		cout << "3) Wyjdz z gry" << endl;
+
+		switch (wybierz_opcje(3,1))
+		{
+		case 1:
+		{
+			gracz.menu();
+			break;
+		}
+		case 2:
+		{
+			wybierz_droge();
+			break;
+		}
+		}
 	}
 
+	void rozpocznij_gre()
+	{
+		stworz_postac();
+		menu_glowne();
+	}
 	void zapisz() {};
 	void wczytaj() {};
-	void ruch() {};
+
+	void wyjscie()
+	{
+		cout << "Zegnaj";
+	}
 };

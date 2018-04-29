@@ -13,8 +13,8 @@ static void nacisnij_klawisz()
 }
 
 // bedziemy czesto wybierac rozne opcje z menu dlatego tworzymy jedna funkcje statyczna
-// zwracamy wybrana opcje
-static bool wybierz_opcje(int max, int min = 0)
+// zwracamy wybrana opcje. Funckcja sprawdza poprawnosc wprowadzania danych
+static int wybierz_opcje(int max, int min = 0)
 {
 	int wybor;
 
@@ -24,7 +24,7 @@ static bool wybierz_opcje(int max, int min = 0)
 		int wybor;
 		cin >> wybor;
 
-		if (wybor < min || wybor >= max) 	// wykonujemy program do chwli az gracz poda poprawna wartosc
+		if (wybor < min || wybor > max) 	// wykonujemy program do chwli az gracz poda poprawna wartosc
 			cout << "Wybrales bledna opcje! Wprowadz dane jeszcze raz! " << endl;
 		else
 		{

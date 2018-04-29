@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Kostka.h"
+#include "windows.h"    // kolorowanie skladni
 using namespace std;
 
 #pragma once
@@ -16,8 +17,9 @@ public:
 	Postac(string nazwa, int zycie, int sila, int zrecznosc, int obrazenia, int poziom) :
 		nazwa(nazwa), zycie(zycie), sila(sila), zrecznosc(zrecznosc), obrazenia(obrazenia), poziom(poziom) {}
 
-	void informacja()
+	void statystyki()
 	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10); // koloruj  
 		cout << "=======================================================================================================================" << endl;
 		cout << nazwa << "   ";
 		cout << "Poziom: " << poziom << "   ";
@@ -26,6 +28,7 @@ public:
 		cout << "Zrecznosc: " << zrecznosc << "   ";
 		cout << "Obrazenia: " << obrazenia << "   " << endl;
 		cout << "=======================================================================================================================" << endl;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 	}
 
 	void przyznaj_obrazenia(int obrazenia) { zycie -= obrazenia; }

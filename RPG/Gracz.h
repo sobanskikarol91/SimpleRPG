@@ -2,8 +2,8 @@
 #include "Postac.h"
 #include "Ekwipunek.h"
 #include "windows.h"    // kolorowanie skladni
-
-class Gracz : public Postac
+#include  "Menu.h"
+class Gracz : public Postac, public Menu
 {
 	Ekwipunek ekwipunek;
 public:
@@ -11,10 +11,10 @@ public:
 	Gracz() : Postac() {};
 
 	// konstruktor z lista inicjalizacyjna sluzacy do tworzenia postaci gracza
-	Gracz(string nazwa, int zycie, int sila, int zrecznosc, int obrazenia, int poziom)
-		: Postac(nazwa, zycie, sila, zrecznosc, obrazenia, poziom) {};
+	Gracz(string nazwa, int zycie, int sila, int zrecznosc, int obrazenia, int poziom, Ekwipunek ekwipunek)
+		: Postac(nazwa, zycie, sila, zrecznosc, obrazenia, poziom), ekwipunek(ekwipunek) {};
 
-	void otrzymuje_przedmiot(Przedmiot * przedmiot)
+	void otrzymuje_przedmiot(Przedmiot  przedmiot)
 	{
 		ekwipunek.dodaj_przedmiot(przedmiot);
 	}
@@ -43,7 +43,25 @@ public:
 		return sila + modyfikator_obrazen();
 	}
 
-	Ekwipunek pobierz_ekwipunek() { return ekwipunek; }
+	void menu()
+	{
+		cout << "1) Statystyki gracz" << endl;
+		cout << "2) Przegladaj ekwipunek" << endl;
+		cout << "3) Powrot" << endl;
 
+		int wybor = wybierz_opcje(3, 1);
+
+		switch (wybor)
+		{
+		case 1:
+			statystyki();
+			break;
+		case 2:
+			ekwipunek.menu();
+			break;
+		case 3:
+			break;
+		}
+	}
 };
 

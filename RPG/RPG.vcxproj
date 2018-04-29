@@ -124,6 +124,7 @@
     <ClCompile Include="Gracz.cpp" />
     <ClCompile Include="Kostka.cpp" />
     <ClCompile Include="Lokalizacja.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Pancerz.cpp" />
     <ClCompile Include="Postac.cpp" />
     <ClCompile Include="Przeciwnik.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Gracz.h" />
     <ClInclude Include="Kostka.h" />
     <ClInclude Include="Lokalizacja.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Pancerz.h" />
     <ClInclude Include="Postac.h" />
     <ClInclude Include="Przeciwnik.h" />

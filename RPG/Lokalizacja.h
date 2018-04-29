@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstdlib>
 #include "Przeciwnik.h"
 #include "Przedmiot.h"
 #include "Stan.h"
@@ -31,9 +30,7 @@ public:
 	// w zaleznosci od podjetego wyboru gracza zwracamy jego decyzje aby pozniej na jej podstawie
 	// przejsc do innego etapu gry
 	STAN wejdz_do_lokalizacji(Gracz * gracz)
-	{
-		system("cls"); // wyczysc ekran
-		
+	{		
 		int wybor;
 		cout << "Co chcesz zrobic?" << endl;
 		cout << "1) Przeszukaj lokalizacje" << endl;
@@ -46,7 +43,7 @@ public:
 		{
 		case 1:
 		{
-			Przedmiot * znalezisko = przeszukanie();
+			Przedmiot  znalezisko = przeszukanie();
 			gracz->otrzymuje_przedmiot(znalezisko);
 			cout << "Przeszukujac lokalizacje, zbudziles jego straznika! " << endl;
 			return menu_wyboru_walki(gracz);
@@ -59,13 +56,13 @@ public:
 	}
 
 	// zwracamy wskaznik na adres przedmiotu
-	Przedmiot* przeszukanie()
+	Przedmiot przeszukanie()
 	{
 		cout << "Przeszukujac lokalizacje natrafiasz na przedmiot jest to: ";
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10); // koloruj  
 		cout << przedmiot.informacja() << endl;
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-		return &przedmiot;
+		return przedmiot;
 	}
 
 	bool proba_ucieczki(Gracz * gracz)
@@ -108,12 +105,12 @@ public:
 	{
 		cout << "Na Twojej drodze staje: " << endl;
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12); // koloruj na zolty
-		przeciwnik.informacja();
+		przeciwnik.statystyki();
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 		cout << "1) (Walka) Zrobie Ci z lba popielniczke AGRRR!! " << endl;
 		cout << "2) (Ucieczka) Strasznie napakowany ten kolo, chyba wroce pozniej..." << endl;
 
-		int wybor = wybierz_opcje();
+		int wybor = wybierz_opcje(2,1);
 		switch (wybor)
 		{
 		case 1:
