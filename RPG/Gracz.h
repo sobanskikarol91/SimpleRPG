@@ -1,8 +1,10 @@
 #pragma once
 #include "Postac.h"
 #include "Ekwipunek.h"
-#include "windows.h"    // kolorowanie skladni
-#include  "Menu.h"
+#include "Kolorowanie.h" // kolorowanie skladni
+#include "Menu.h"
+#include "Dodatki.h"
+
 class Gracz : public Postac, public Menu
 {
 	Ekwipunek ekwipunek;
@@ -45,7 +47,7 @@ public:
 
 	void menu()
 	{
-		cout << "1) Statystyki gracz" << endl;
+		cout << "1) Statystyki gracza" << endl;
 		cout << "2) Przegladaj ekwipunek" << endl;
 		cout << "3) Powrot" << endl;
 
@@ -54,7 +56,12 @@ public:
 		switch (wybor)
 		{
 		case 1:
+		{
+			zmien_kolor_txt(KOLOR::ZIELONY);
 			statystyki();
+			zmien_kolor_txt(KOLOR::ZOLTY);
+			nacisnij_klawisz();
+		}
 			break;
 		case 2:
 			ekwipunek.menu();

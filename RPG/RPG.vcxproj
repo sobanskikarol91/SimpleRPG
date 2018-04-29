@@ -122,6 +122,7 @@
     <ClCompile Include="Ekwipunek.cpp" />
     <ClCompile Include="Gra.cpp" />
     <ClCompile Include="Gracz.cpp" />
+    <ClCompile Include="Kolorowanie.cpp" />
     <ClCompile Include="Kostka.cpp" />
     <ClCompile Include="Lokalizacja.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Ekwipunek.h" />
     <ClInclude Include="Gra.h" />
     <ClInclude Include="Gracz.h" />
+    <ClInclude Include="Kolorowanie.h" />
     <ClInclude Include="Kostka.h" />
     <ClInclude Include="Lokalizacja.h" />
     <ClInclude Include="Menu.h" />

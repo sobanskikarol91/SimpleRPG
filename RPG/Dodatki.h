@@ -6,8 +6,8 @@ using namespace std;
 // uzywamy jej w wielu klasach dlatego jest statyczna 
 static void nacisnij_klawisz()
 {
-	int wybor;
-	cout << "nacisnij klawisz aby przejsc dalej" << endl;
+	char wybor;
+	cout << "nacisnij klawisz aby przejsc dalej i zatwierdz enterem...";
 	cin >> wybor;
 	system("cls"); // czyscimy ekran
 }

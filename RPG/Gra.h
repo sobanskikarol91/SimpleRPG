@@ -12,7 +12,7 @@
 #include "Amulet.h"
 #include "Pancerz.h"
 #include "Stan.h" // pozwala na przeslanie wiadomosci zwrotnej, wyboru gracza z lokalizacji
-#include "Dodatki.h"
+#include "Dodatki.h"    
 using namespace std;
 
 #pragma once
@@ -83,7 +83,7 @@ public:
 		cout << "Dotarles do rozwidlenia " << lokalizacje.size() << " sciezek, gdzie tym razem poprowadzi Cie przeznaczenie? " << endl << endl;
 		
 		// wykorzystujemy dolaczona funkcje, posylamy maxymalna ilosc lokalizacji do wyboru, funkcja zwraca wybor gracza
-		int wybor = wybierz_opcje(lokalizacje.size());
+		int wybor = wybierz_opcje(lokalizacje.size()-1);
 
 		STAN wynik = lokalizacje[wybor].wejdz_do_lokalizacji(&gracz);
 		wybierz_dzialanie_wyniku(wynik, wybor);
@@ -98,6 +98,7 @@ public:
 		{
 			cout << "(Wygrana) Ha! Zabijalem juz za mniej!" << endl;
 
+			nacisnij_klawisz();
 			// zdobylismy ta lokalizacje juz, wiec usuwamy ja z listy aby wiecej nie pokazywala nam sie
 			// przy wyborze sciezki
 			lokalizacje.erase(lokalizacje.begin() + wybor);
@@ -105,14 +106,14 @@ public:
 			// zwiekszamy poziom gracza po wygranej walce
 			gracz.zwieksz_poziom();
 			nacisnij_klawisz();
-			wybierz_droge();
+			menu_glowne();
 			break;
 		}
 		case UCIECZKA:
 		{
 			cout << "Udalo Ci sie bezpiecznie zawrocic" << endl;
 			nacisnij_klawisz();
-			wybierz_droge();
+			menu_glowne();
 			break;
 		}
 		case PORAZKA:
@@ -130,7 +131,7 @@ public:
 		cout << "2) Udaj sie w droge" << endl;
 		cout << "3) Wyjdz z gry" << endl;
 
-		switch (wybierz_opcje(3,1))
+		switch (wybierz_opcje(3, 1))
 		{
 		case 1:
 		{
@@ -142,7 +143,11 @@ public:
 			wybierz_droge();
 			break;
 		}
+		case 3:
+			exit(0); // definytywnie wychodzimy z gry
 		}
+
+		menu_glowne(); // zawsze wracamy do menu glownego, no chyba ze wybierzemy wyjscie z gry
 	}
 
 	void rozpocznij_gre()

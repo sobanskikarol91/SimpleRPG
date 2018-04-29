@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "Kostka.h"
-#include "windows.h"    // kolorowanie skladni
 using namespace std;
 
 #pragma once
@@ -19,7 +18,6 @@ public:
 
 	void statystyki()
 	{
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10); // koloruj  
 		cout << "=======================================================================================================================" << endl;
 		cout << nazwa << "   ";
 		cout << "Poziom: " << poziom << "   ";
@@ -28,7 +26,6 @@ public:
 		cout << "Zrecznosc: " << zrecznosc << "   ";
 		cout << "Obrazenia: " << obrazenia << "   " << endl;
 		cout << "=======================================================================================================================" << endl;
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
 	}
 
 	void przyznaj_obrazenia(int obrazenia) { zycie -= obrazenia; }
