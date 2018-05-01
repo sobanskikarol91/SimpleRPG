@@ -17,6 +17,7 @@ public:
 	string informacja() { return nazwa; }
 	bool sprawdz_czy_wyposazony() { return wyposazony; }
 	void ustaw_wyposazony(bool stan) { wyposazony = stan; }
+	Statystyki pobierz_statystyki() { return statystyki; }
 };
 
 

@@ -4,6 +4,7 @@
 #include "Przedmiot.h"
 #include "Menu.h"
 #include "Kolorowanie.h"
+#include "Statystyki.h"
 
 using namespace std;
 
@@ -42,15 +43,15 @@ public:
 		przedmioty.push_back(nowyPrzedmiot);
 	}
 
-	int oblicz_bonusy_obrazen()
+	// metoda oblciza wszystkie bonusy wynikajace z przedmiotow, zwraca sume wszystkich statystyk
+	Statystyki oblicz_bonusy_przedmiotow()
 	{
-		//int bonus_obrazen = 0;
+		Statystyki bonus;
 
-		//for (int i = 0; i < przedmioty.size(); i++)
-		//{
-		//	if (dynamic_cast<Bron*>(&przedmioty[i]))
-		//		bonus_obrazen+= przedmioty
-		//}
+		for (unsigned int i = 0; i < przedmioty.size(); i++)
+			bonus += przedmioty[i].pobierz_statystyki();
+
+		return bonus;
 	}
 
 	void menu()

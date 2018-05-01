@@ -95,7 +95,7 @@ public:
 
 		zmien_kolor_txt(ZIELONY);
 		cout << "Sila gracza:  " << sila_gracza << endl;
-		//zmien_kolor_txt(KOLOR::ZOLTY);
+		zmien_kolor_txt(ZOLTY);
 		cout << "==============================================================" << endl;
 
 

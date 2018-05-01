@@ -30,17 +30,17 @@ public:
 		cout << "sila  +" << sila << "   zrecznosc  +" << zrecznosc << "   zycie  +" << zycie << endl;
 		cout << "********************************************" << endl;
 		zmien_kolor_txt(ZOLTY);
+
 		statystyki.dodaj_zrecznosc(zrecznosc);
 		statystyki.dodaj_sila(sila);
 		statystyki.dodaj_zycie(zycie);
 		statystyki.dodaj_poziom();
 	}
 
-	// metoda ta bierze pod uwage rowniez bonusy z ekwipunku
+	// metoda ta bierze pod uwage rowniez bonusy wszystkich przedmiotow w ekwipunku a dokladnie ich atrybutu sily
 	virtual int atak()
 	{
-		// TODO bonusy;
-		return statystyki.pobierz_sila() + modyfikator_obrazen();
+		return statystyki.pobierz_sila() + modyfikator_obrazen() + ekwipunek.oblicz_bonusy_przedmiotow().pobierz_sila();
 	}
 
 	void menu()
