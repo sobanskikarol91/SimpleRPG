@@ -96,7 +96,7 @@ public:
 		{
 		case WYGRANA:
 		{
-			cout << "(Wygrana) Ha! Zabijalem juz za mniej!" << endl;
+			koloruj_txt("(Wygrana)Ha!Zabijalem juz za mniej!", ZIELONY);
 
 			nacisnij_klawisz();
 			// zdobylismy ta lokalizacje juz, wiec usuwamy ja z listy aby wiecej nie pokazywala nam sie
@@ -117,8 +117,9 @@ public:
 			break;
 		}
 		case PORAZKA:
-			cout << "(Przegrana) Mniam mniam, powiedzial potwor jedzacy Twoje cialo" << endl;
-			break;
+			koloruj_txt("(Przegrana) Mniam mniam, powiedzial potwor jedzacy Twoje cialo",CZERWONY);
+			nacisnij_klawisz();
+			exit(0);
 		default:
 			break;
 		}

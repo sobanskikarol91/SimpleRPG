@@ -22,11 +22,11 @@ public:
 	virtual int atak() = 0;
 	Statystyki pobierz_statystyki() { return statystyki; }
 	void ustaw_statystyki(Statystyki wartosc) { statystyki = wartosc; }
+
 protected: // protected bo metoda ta bedzie uzywana jedynie w klasie Przeciwnika i Gracza
 	int modyfikator_obrazen()
 	{
-		Kostka kostka;
+		Kostka kostka(1,3);
 		return kostka.losuj();
 	}
-
 };

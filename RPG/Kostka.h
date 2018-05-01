@@ -13,7 +13,7 @@ public:
 	
 	int losuj()
 	{
-		return (std::rand() % max - min ) + min;
+		return (rand() % max - min ) + min;
 	}
 };
 

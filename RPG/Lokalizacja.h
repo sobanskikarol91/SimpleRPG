@@ -11,8 +11,8 @@ class Lokalizacja
 {
 	Przeciwnik przeciwnik;
 	Przedmiot przedmiot;
-	string nazwa;
-	string opis;
+	string nazwa, opis;
+
 public:
 	Lokalizacja() {};
 	Lokalizacja(string nazwa, string opis, Przeciwnik przeciwnik, Przedmiot przedmiot)
@@ -45,7 +45,7 @@ public:
 			Przedmiot  znalezisko = przeszukanie();
 			gracz->otrzymuje_przedmiot(znalezisko);
 			cout << " Dodajesz przedmiot do ekwipunku." << endl;
-			cout << "Twoje odglosy, zbudzily straznika! " << endl;
+			cout << "Twoje odglosy, zbudzily straznika! " << endl << endl;
 			return menu_wyboru_walki(gracz);
 		}
 		case 2:

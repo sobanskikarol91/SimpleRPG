@@ -6,8 +6,8 @@ using namespace std;
 int main()
 {
 	Gra gra;
+	srand(time(NULL));	// pozwala na losowanie psueudolosowych liczb, przyda sie przy  rzucie kostka
 	gra.stworz_postac();
 	gra.menu_glowne();
-	srand(time(NULL));	// pozwala na losowanie psueudolosowych liczb, przyda sie przy  rzucie kostka
 	return 0;
 }
