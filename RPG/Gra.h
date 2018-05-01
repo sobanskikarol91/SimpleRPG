@@ -68,7 +68,7 @@ public:
 		lokalizacje.push_back(Lokalizacja("Zamek",
 			"Daleko na polnocy dostrzegasz ogromne ruiny, ktore kiedys musialy byc czescia zamku. Choc piekno i potega tego budynku dawno miely, masz wrazenie, ze to miejsce nie jest do konca opustoszale.",
 			Wladca("Wladca", Statystyki(10, 2, 2, 2, 1)),
-			Przedmiot("Kamien teleportacyjny", Statystyki(0, 0, 0, 0, 0))));
+			Przedmiot("Kamien teleportacyjny", Statystyki(0, 0, 0, 0, 0)))); 
 	}
 
 	void wybierz_droge()
@@ -107,14 +107,13 @@ public:
 			// zwiekszamy poziom gracza po wygranej walce
 			gracz.zwieksz_poziom();
 			nacisnij_klawisz();
-			menu_glowne();
+			sprawdz_warunki_ukonczenia_gry();
 			break;
 		}
 		case UCIECZKA:
 		{
 			cout << "Udalo Ci sie bezpiecznie zawrocic" << endl;
 			nacisnij_klawisz();
-			menu_glowne();
 			break;
 		}
 		case PORAZKA:
@@ -123,6 +122,17 @@ public:
 			exit(0);
 		default:
 			break;
+		}
+		menu_glowne();
+	}
+
+	void sprawdz_warunki_ukonczenia_gry()
+	{
+		if (lokalizacje.size() == 0)
+		{
+			cout << "Doszedles do konca swojej podrozy udalo Ci sie pokonac wszystkich przeciwnikow oraz wladce wyspy!" << endl;
+			nacisnij_klawisz();
+			exit(0);
 		}
 	}
 
