@@ -97,7 +97,7 @@ public:
 		{
 		case WYGRANA:
 		{
-			koloruj_txt("(Wygrana)Ha!Zabijalem juz za mniej!", ZIELONY);
+			koloruj_txt("(Wygrana) Ha! Zabijalem juz za mniej!", ZIELONY);
 
 			nacisnij_klawisz();
 			// zdobylismy ta lokalizacje juz, wiec usuwamy ja z listy aby wiecej nie pokazywala nam sie
@@ -165,22 +165,25 @@ public:
 	void rozpocznij_gre()
 	{
 		stworz_postac();
-		menu_glowne();
+		zapisz();
+		//menu_glowne();
 	}
 
 	void zapisz() 
 	{
 		fstream plik("zapis.txt", std::ios::out);
 
+		cout << "kura co jest";
+		nacisnij_klawisz();
+		plik << "a";
+		string napis = "222";
+		plik.write(&napis[0], napis.length()); //zapisuje dane poczynaj¹c od 0 indeksu
 		if (plik.good()) // sprawdzenie czy udalo sie uzyskac dostep do pliku
 		{
-			for (int i = 1; i <= 100; i++)
-			{
-				plik << i << ", ";
-				plik.flush();
-			}
-			plik.close();
+			
+			
 		}
+		plik.close();
 	}
 
 	void wczytaj() {};

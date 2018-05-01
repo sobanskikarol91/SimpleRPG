@@ -1,5 +1,6 @@
 #pragma once
 #include "Przeciwnik.h"
+
 class Wladca :public Przeciwnik
 {
 public:

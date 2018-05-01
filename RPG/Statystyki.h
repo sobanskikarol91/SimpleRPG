@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <sstream> // do pracy ze strumieniem
+#include <string>
 using namespace std;
 
 class Statystyki
@@ -53,5 +55,19 @@ public:
 	{
 		return Statystyki(zycie + s.zycie, sila + s.sila, zrecznosc + s.zrecznosc, obrona + s.obrona, 0); // poziomu nie dodajemy
 	}
-};
 
+	// Przeciazenie operatorow zapisu do pliku
+	friend ostream & operator<<(ostream & plik, Statystyki & s)
+	{
+		plik << s.zycie << " " << s.sila << " " << " " << s.zrecznosc << " " << s.obrona << " " << s.poziom;
+		return  plik;
+	}
+
+	// Przeciazenie operatorow odczytu z pliku
+	friend istream & operator>>(istream & plik, Statystyki & s)
+	{
+		string linia;
+		while (getline(plik, linia)); // wykonuj dopoki mozesz pobierac linie z pliku
+		return plik;
+	}
+};
