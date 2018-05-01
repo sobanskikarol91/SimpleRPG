@@ -12,6 +12,7 @@ static void koloruj_txt(string tekst, KOLOR kolor, bool enter = true)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), kolor); // koloruj  na zielono
 	cout << tekst;
+
 	if (enter)  cout << endl;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ZOLTY);    // koloruj  na zolto
 }

@@ -29,7 +29,7 @@ public:
 	void stworz_postac()
 	{
 		string nazwa;
-
+		zmien_kolor_txt(ZOLTY); // kolorujemy tekst od tej pory na zolto
 		cout << "Stworz nowa postac" << endl << "Imie Twojego bohatera brzmi: ";
 		cin >> nazwa;
 
@@ -65,7 +65,7 @@ public:
 			Przedmiot("Naszyjnik", Statystyki(0, 2, 2, 0, 0))));
 
 		lokalizacje.push_back(Lokalizacja("Zamek",
-			"Daleko na polnocy dostrzegasz ogromne ruiny, ktore kiedys musialy byc czescia zamku. Choc piekno i potega tego budynku dawno miely, masz wrazenie, z to miejsce nie jest do konca opustoszale.",
+			"Daleko na polnocy dostrzegasz ogromne ruiny, ktore kiedys musialy byc czescia zamku. Choc piekno i potega tego budynku dawno miely, masz wrazenie, ze to miejsce nie jest do konca opustoszale.",
 			Wladca("Wladca", Statystyki(10, 2, 2, 2, 1)),
 			Przedmiot("Kamien teleportacyjny", Statystyki(0, 0, 0, 0, 0))));
 	}
@@ -73,7 +73,7 @@ public:
 	void wybierz_droge()
 	{
 		gracz.pobierz_statystyki();
-		for (int i = 0; i < lokalizacje.size(); i++)
+		for (unsigned int i = 0; i < lokalizacje.size(); i++)
 		{
 			cout << i << ") ";
 			lokalizacje[i].informacja();
@@ -161,5 +161,6 @@ public:
 	void wyjscie()
 	{
 		cout << "Zegnaj";
+		nacisnij_klawisz();
 	}
 };

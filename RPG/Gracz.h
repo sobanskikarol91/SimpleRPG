@@ -24,12 +24,12 @@ public:
 	// ustawiamy domyslne wartosci, jezeli nie podamy argumentow to zostana przeslane domyslne
 	void zwieksz_poziom(int sila = 1, int zrecznosc = 1, int zycie = 10)
 	{
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10); // koloruj 
+		zmien_kolor_txt(ZIELONY);
 		cout << "********************************************" << endl;
 		cout << "NOWY POZIOM!" << endl;
 		cout << "sila  +" << sila << "   zrecznosc  +" << zrecznosc << "   zycie  +" << zycie << endl;
 		cout << "********************************************" << endl;
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); // koloruj na zloto
+		zmien_kolor_txt(ZOLTY);
 		statystyki.dodaj_zrecznosc(zrecznosc);
 		statystyki.dodaj_sila(sila);
 		statystyki.dodaj_zycie(zycie);
@@ -55,9 +55,9 @@ public:
 		{
 		case 1:
 		{
-			zmien_kolor_txt(KOLOR::ZIELONY);
+			zmien_kolor_txt(ZIELONY);
 			statystyki.informacja();
-			zmien_kolor_txt(KOLOR::ZOLTY);
+			zmien_kolor_txt(ZOLTY);
 			nacisnij_klawisz();
 		}
 		break;

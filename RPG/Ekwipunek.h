@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
-#include "Przedmiot.h"
 #include <vector>    // dynamiczny pojemnik gdzie przechowujemy przedmioty
+#include "Przedmiot.h"
 #include "Menu.h"
 #include "Kolorowanie.h"
 
@@ -24,14 +24,14 @@ public:
 		else
 		{
 			// wypisujemy informacje o kazdym przedmiocie w ekwpiunku gdy jakies sa
-			for (int i = 0; i < przedmioty.size(); i++)
+			for (unsigned int i = 0; i < przedmioty.size(); i++)
 			{
 				cout << i << ") ";
 				cout << przedmioty[i].informacja();
 				if (przedmioty[i].sprawdz_czy_wyposazony())
-					koloruj_txt(" (Wyposazony)", KOLOR::ZIELONY);
+					koloruj_txt(" (Wyposazony)", ZIELONY);
 				else
-					koloruj_txt(" (Nie wyposazony)", KOLOR::CZERWONY);
+					koloruj_txt(" (Nie wyposazony)", CZERWONY);
 			}
 		}
 	}

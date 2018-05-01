@@ -29,14 +29,14 @@ public:
 	// w zaleznosci od podjetego wyboru gracza zwracamy jego decyzje aby pozniej na jej podstawie
 	// przejsc do innego etapu gry
 	STAN wejdz_do_lokalizacji(Gracz * gracz)
-	{		
+	{
 		int wybor;
 		cout << "Co chcesz zrobic?" << endl;
 		cout << "1) Przeszukaj lokalizacje" << endl;
 		cout << "2) Walcz " << endl;
 		cout << "3) Zawroc " << endl;
-		
-		wybor = wybierz_opcje(3,1);
+
+		wybor = wybierz_opcje(3, 1);
 
 		switch (wybor)
 		{
@@ -45,7 +45,7 @@ public:
 			Przedmiot  znalezisko = przeszukanie();
 			gracz->otrzymuje_przedmiot(znalezisko);
 			cout << " Dodajesz przedmiot do ekwipunku." << endl;
-			cout << "Przeszukujac lokalizacje, zbudziles jego straznika! " << endl;
+			cout << "Twoje odglosy, zbudzily straznika! " << endl;
 			return menu_wyboru_walki(gracz);
 		}
 		case 2:
@@ -59,7 +59,7 @@ public:
 	Przedmiot przeszukanie()
 	{
 		cout << "Przeszukujac lokalizacje natrafiasz na przedmiot jest to: ";
-		koloruj_txt(przedmiot.informacja(), KOLOR::ZIELONY, false); // kolorujemy informacje na zielono i nie dodajemy entera
+		koloruj_txt(przedmiot.informacja(), ZIELONY, false); // kolorujemy informacje na zielono i nie dodajemy entera
 		return przedmiot;
 	}
 
@@ -71,12 +71,12 @@ public:
 		int zrecznosc_gracza = gracz->pobierz_statystyki().pobierz_zrecznosc();
 
 		cout << "==============================================================" << endl;
-		zmien_kolor_txt(KOLOR::CZERWONY);
+		zmien_kolor_txt(CZERWONY);
 		cout << "Zrecznosc potwora: " << zrecznosc_potwora << endl;
 
-		zmien_kolor_txt(KOLOR::ZIELONY);
+		zmien_kolor_txt(ZIELONY);
 		cout << "Zrecznosc gracza:  " << zrecznosc_gracza << endl;
-		zmien_kolor_txt(KOLOR::ZOLTY);
+		zmien_kolor_txt(ZOLTY);
 		cout << "==============================================================" << endl;
 
 
@@ -90,10 +90,10 @@ public:
 		int sila_gracza = gracz->atak();
 
 		cout << "==============================================================" << endl;
-		zmien_kolor_txt(KOLOR::CZERWONY);
+		zmien_kolor_txt(CZERWONY);
 		cout << "Sila potwora: " << sila_potwory << endl;
 
-		zmien_kolor_txt(KOLOR::ZIELONY);
+		zmien_kolor_txt(ZIELONY);
 		cout << "Sila gracza:  " << sila_gracza << endl;
 		//zmien_kolor_txt(KOLOR::ZOLTY);
 		cout << "==============================================================" << endl;
@@ -109,23 +109,23 @@ public:
 	{
 		cout << "Na Twojej drodze staje: " << endl;
 
-		zmien_kolor_txt(KOLOR::CZERWONY);
+		zmien_kolor_txt(CZERWONY);
 		przeciwnik.pobierz_statystyki();
-		zmien_kolor_txt(KOLOR::ZOLTY);
+		zmien_kolor_txt(ZOLTY);
 
 		cout << "1) (Walka) Zrobie Ci z lba popielniczke AGRRR!! " << endl;
 		cout << "2) (Ucieczka) Strasznie napakowany ten kolo, chyba wroce pozniej..." << endl;
 
-		int wybor = wybierz_opcje(2,1);
+		int wybor = wybierz_opcje(2, 1);
 		switch (wybor)
 		{
 		case 1:
 		{
 			cout << "Postanowiles stanac do walki" << endl;
-			walka(gracz);
+			return walka(gracz); // zwracamy rezultat walki
 		}
-			break;
-		case 2:
+		break;
+		default:
 		{
 			if (proba_ucieczki(gracz))
 				return STAN::UCIECZKA;
@@ -133,7 +133,7 @@ public:
 			{
 				cout << "Nie udalo Ci sie uciec, musisz stanac do walki " << endl;
 				nacisnij_klawisz();
-				walka(gracz);
+				return	walka(gracz);  // zwracamy rezultat walki
 			}
 		}
 		}

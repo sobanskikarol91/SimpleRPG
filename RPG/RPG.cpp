@@ -9,6 +9,5 @@ int main()
 	gra.stworz_postac();
 	gra.menu_glowne();
 	srand(time(NULL));	// pozwala na losowanie psueudolosowych liczb, przyda sie przy  rzucie kostka
-	system("pause");
 	return 0;
 }

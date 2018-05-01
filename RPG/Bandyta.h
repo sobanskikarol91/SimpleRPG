@@ -1,5 +1,6 @@
 #pragma once
 #include "Przeciwnik.h"
+
 class Bandyta : public Przeciwnik
 {
 public:
