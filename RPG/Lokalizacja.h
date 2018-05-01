@@ -44,7 +44,7 @@ public:
 		{
 			Przedmiot  znalezisko = przeszukanie();
 			gracz->otrzymuje_przedmiot(znalezisko);
-			cout << " Dodajesz przedmiot do ekwipunku." << endl;
+			cout << "Dodajesz przedmiot do ekwipunku." << endl;
 			cout << "Twoje odglosy, zbudzily straznika! " << endl << endl;
 			return menu_wyboru_walki(gracz);
 		}
@@ -58,8 +58,10 @@ public:
 	// zwracamy wskaznik na adres przedmiotu
 	Przedmiot przeszukanie()
 	{
-		cout << "Przeszukujac lokalizacje natrafiasz na przedmiot jest to: ";
-		koloruj_txt(przedmiot.informacja(), ZIELONY, false); // kolorujemy informacje na zielono i nie dodajemy entera
+		cout << "Przeszukujac lokalizacje natrafiasz na przedmiot jest to: " << endl;
+		zmien_kolor_txt(ZIELONY);
+		przedmiot.informacja(false); // nie chcey informacjo tym czyejst wyposazony wiec false
+		zmien_kolor_txt(ZOLTY);
 		return przedmiot;
 	}
 

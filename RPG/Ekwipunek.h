@@ -3,7 +3,6 @@
 #include <vector>    // dynamiczny pojemnik gdzie przechowujemy przedmioty
 #include "Przedmiot.h"
 #include "Menu.h"
-#include "Kolorowanie.h"
 #include "Statystyki.h"
 
 using namespace std;
@@ -27,14 +26,28 @@ public:
 			// wypisujemy informacje o kazdym przedmiocie w ekwpiunku gdy jakies sa
 			for (unsigned int i = 0; i < przedmioty.size(); i++)
 			{
-				cout << i << ") ";
-				cout << przedmioty[i].informacja();
-				if (przedmioty[i].sprawdz_czy_wyposazony())
-					koloruj_txt(" (Wyposazony)", ZIELONY);
-				else
-					koloruj_txt(" (Nie wyposazony)", CZERWONY);
+				cout << "=======================================================================================================================" << endl;
+				cout << i << ")  " << endl;
+
+				przedmioty[i].informacja();
+				cout << "=======================================================================================================================" << endl;
 			}
 		}
+	}
+
+	// zwracamy tylko te przedmioty ktore sa aktywne
+	vector<Przedmiot> spis_aktywnych_przedmiotow()
+	{
+		vector<Przedmiot> aktywne;
+
+		for (unsigned int i = 0; i < przedmioty.size(); i++)
+		{
+			// jezeli nie wyposazony przedmiot to nie wykonuj dalszej czesci bloku
+			if (przedmioty[i].sprawdz_czy_wyposazony() == false) continue;
+			aktywne.push_back(przedmioty[i]); // dodaj aktywny przedmiot
+		}
+
+		return aktywne;
 	}
 
 	// przesylamy wskaznik na przedmiot
@@ -43,15 +56,16 @@ public:
 		przedmioty.push_back(nowyPrzedmiot);
 	}
 
-	// metoda oblciza wszystkie bonusy wynikajace z przedmiotow, zwraca sume wszystkich statystyk
+	// metoda oblciza wszystkie bonusy wynikajace z aktywnych przedmiotow, zwraca sume wszystkich statystyk
 	Statystyki oblicz_bonusy_przedmiotow()
 	{
-		Statystyki bonus;
+		Statystyki suma;
+		vector< Przedmiot> aktywne_przedmioty = spis_aktywnych_przedmiotow();
 
-		for (unsigned int i = 0; i < przedmioty.size(); i++)
-			bonus += przedmioty[i].pobierz_statystyki();
+		for (unsigned int i = 0; i < aktywne_przedmioty.size(); i++)
+			suma += przedmioty[i].pobierz_statystyki();
 
-		return bonus;
+		return suma;
 	}
 
 	void menu()
@@ -71,7 +85,7 @@ public:
 			cout << "Co chcesz zrobic?" << endl;
 			cout << "1) Zaloz przedmiot" << endl;
 			cout << "2) Zdejmij przedmiot" << endl;
-			cout << "3) Exit" << endl;
+			cout << "3) Zamknij ekwipunek" << endl;
 
 			switch (wybierz_opcje(3))
 			{

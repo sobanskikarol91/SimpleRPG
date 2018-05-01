@@ -14,13 +14,11 @@ public:
 
 	void informacja()
 	{
-		cout << "=======================================================================================================================" << endl;
 		cout << "Poziom: " << poziom << "   ";
 		cout << "HP: " << zycie << "   ";
 		cout << "Sila: " << sila << "   ";
 		cout << "Obrona: " << obrona << "   ";
 		cout << "Zrecznosc: " << zrecznosc << "   " << endl;
-		cout << "=======================================================================================================================" << endl;
 	}
 
 	// gettery
@@ -38,11 +36,22 @@ public:
 	// poziom zwiekszamy zawsze o jeden
 	void dodaj_poziom() { poziom++; }
 
-	// operator +=, definiuje jak mamy dodawac do jednego obiektu Statystyka drugi obiekt Statystyka
-	Statystyki operator+= (Statystyki const& s)
+	// operator +=, definiuje jak mamy dodac do jednego skladnika drugi
+	Statystyki& operator+= (Statystyki const& s)
 	{
 		// dodajemy poszczegolne skladowe statystyk do siebie i zwracamy rezultat jako nowy obiekt
-		return Statystyki(zycie + s.zycie, sila + s.sila, zrecznosc + s.zrecznosc, obrona + s.obrona, poziom + s.poziom);
+		zycie += s.zycie;
+		sila += s.sila;
+		zrecznosc += s.zrecznosc;
+		obrona += s.obrona;
+		// poziomu nie dodajemy
+		return *this;
+	}
+
+	// operator dodawania opisuje jak mamy dodawac dwa skladniki
+	Statystyki operator+ (Statystyki const& s)
+	{
+		return Statystyki(zycie + s.zycie, sila + s.sila, zrecznosc + s.zrecznosc, obrona + s.obrona, 0); // poziomu nie dodajemy
 	}
 };
 

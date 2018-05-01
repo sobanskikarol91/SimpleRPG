@@ -18,9 +18,14 @@ public:
 		nazwa(nazwa), statystyki(statystyki) {}
 
 
-	// Gracz i przeciwnik beda implementowac inaczej ta metode, dlatego ejst czysto wirtualna przez co klasa jest abstrakcyjna
+	// Gracz i przeciwnik beda implementowac inaczej ta metode, dlatego jest czysto wirtualna przez co klasa jest abstrakcyjna
 	virtual int atak() = 0;
 	Statystyki pobierz_statystyki() { return statystyki; }
+	void informacje() 
+	{
+		cout << nazwa << endl;
+		statystyki.informacja();
+	}
 	void ustaw_statystyki(Statystyki wartosc) { statystyki = wartosc; }
 
 protected: // protected bo metoda ta bedzie uzywana jedynie w klasie Przeciwnika i Gracza

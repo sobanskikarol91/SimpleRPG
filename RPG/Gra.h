@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream> // do operacji na plikach
 #include "Gracz.h"
 #include "Lokalizacja.h"
 #include "Szkielet.h"
@@ -156,7 +157,22 @@ public:
 		stworz_postac();
 		menu_glowne();
 	}
-	void zapisz() {};
+
+	void zapisz() 
+	{
+		fstream plik("zapis.txt", std::ios::out);
+
+		if (plik.good()) // sprawdzenie czy udalo sie uzyskac dostep do pliku
+		{
+			for (int i = 1; i <= 100; i++)
+			{
+				plik << i << ", ";
+				plik.flush();
+			}
+			plik.close();
+		}
+	}
+
 	void wczytaj() {};
 
 	void wyjscie()
