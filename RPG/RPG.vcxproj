@@ -115,9 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Amulet.cpp" />
     <ClCompile Include="Bandyta.cpp" />
-    <ClCompile Include="Bron.cpp" />
     <ClCompile Include="Dodatki.cpp" />
     <ClCompile Include="Ekwipunek.cpp" />
     <ClCompile Include="Gra.cpp" />
@@ -126,7 +124,6 @@
     <ClCompile Include="Kostka.cpp" />
     <ClCompile Include="Lokalizacja.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Pancerz.cpp" />
     <ClCompile Include="Postac.cpp" />
     <ClCompile Include="Przeciwnik.cpp" />
     <ClCompile Include="Przedmiot.cpp" />
@@ -139,9 +136,7 @@
     <ClCompile Include="Zbrojny.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Amulet.h" />
     <ClInclude Include="Bandyta.h" />
-    <ClInclude Include="Bron.h" />
     <ClInclude Include="Dodatki.h" />
     <ClInclude Include="Ekwipunek.h" />
     <ClInclude Include="Gra.h" />
@@ -150,7 +145,6 @@
     <ClInclude Include="Kostka.h" />
     <ClInclude Include="Lokalizacja.h" />
     <ClInclude Include="Menu.h" />
-    <ClInclude Include="Pancerz.h" />
     <ClInclude Include="Postac.h" />
     <ClInclude Include="Przeciwnik.h" />
     <ClInclude Include="Przedmiot.h" />

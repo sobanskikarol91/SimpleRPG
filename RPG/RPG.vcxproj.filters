@@ -33,19 +33,10 @@
     <ClCompile Include="Lokalizacja.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pancerz.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Bron.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Przedmiot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Szkielet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Amulet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Ekwipunek.cpp">
@@ -98,19 +89,10 @@
     <ClInclude Include="Lokalizacja.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pancerz.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Bron.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Przedmiot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Szkielet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Amulet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Ekwipunek.h">

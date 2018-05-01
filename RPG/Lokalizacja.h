@@ -50,7 +50,7 @@ public:
 		}
 		case 2:
 			return 	menu_wyboru_walki(gracz);
-		case 3:
+		default:
 			return STAN::UCIECZKA;
 		}
 	}
@@ -65,10 +65,10 @@ public:
 
 	bool proba_ucieczki(Gracz * gracz)
 	{
-		int zrecznosc_potwora = przeciwnik.pobierz_zrecznosc();
+		int zrecznosc_potwora = przeciwnik.pobierz_statystyki().pobierz_zrecznosc();
 
 		// gracz jest wskaznikiem wiec na obiekt klasy Gracz, wykorzystujemy '->' aby dostac sie do pola klasy
-		int zrecznosc_gracza = gracz->pobierz_zrecznosc();
+		int zrecznosc_gracza = gracz->pobierz_statystyki().pobierz_zrecznosc();
 
 		cout << "==============================================================" << endl;
 		zmien_kolor_txt(KOLOR::CZERWONY);
@@ -110,7 +110,7 @@ public:
 		cout << "Na Twojej drodze staje: " << endl;
 
 		zmien_kolor_txt(KOLOR::CZERWONY);
-		przeciwnik.statystyki();
+		przeciwnik.pobierz_statystyki();
 		zmien_kolor_txt(KOLOR::ZOLTY);
 
 		cout << "1) (Walka) Zrobie Ci z lba popielniczke AGRRR!! " << endl;

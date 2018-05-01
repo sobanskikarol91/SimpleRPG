@@ -5,7 +5,7 @@ class Wilk : public Przeciwnik
 {
 public:
 	Wilk() : Przeciwnik() {};
-	Wilk(string nazwa, int zycie, int sila, int zrecznosc, int poziom)
-		: Przeciwnik(nazwa, zycie, sila, zrecznosc, poziom) {};
+	Wilk(string nazwa, Statystyki statystyki)
+		: Przeciwnik(nazwa, statystyki) {};
 };
 

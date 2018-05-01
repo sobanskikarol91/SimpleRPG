@@ -6,12 +6,12 @@ class Przeciwnik : public Postac
 public:
 	Przeciwnik() : Postac() {};
 	// konstruktur z lista inicjalizacyjna, w ktorej wywolujemy konstruktor klasy bazowej
-	Przeciwnik(string nazwa, int zycie, int sila, int zrecznosc, int poziom)
-		: Postac(nazwa, zycie, sila, zrecznosc, poziom) {};
+	Przeciwnik(string nazwa, Statystyki statystyki)
+		: Postac(nazwa,  statystyki){};
 
 
 	virtual int atak()
 	{
-		return sila + modyfikator_obrazen();
+		return statystyki.pobierz_sila() + modyfikator_obrazen();
 	}
 };

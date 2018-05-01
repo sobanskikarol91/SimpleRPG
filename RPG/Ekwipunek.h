@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include "Przedmiot.h"
-#include "Bron.h"
 #include <vector>    // dynamiczny pojemnik gdzie przechowujemy przedmioty
 #include "Menu.h"
 #include "Kolorowanie.h"

@@ -2,17 +2,16 @@
 #include <string>
 #include <vector>
 #include "Gracz.h"
-#include "Bron.h"
 #include "Lokalizacja.h"
 #include "Szkielet.h"
 #include "Wilk.h"
 #include "Wladca.h"
 #include "Zbrojny.h"
 #include "Bandyta.h"
-#include "Amulet.h"
-#include "Pancerz.h"
+#include "Przedmiot.h"
 #include "Stan.h" // pozwala na przeslanie wiadomosci zwrotnej, wyboru gracza z lokalizacji
-#include "Dodatki.h"    
+#include "Dodatki.h"
+#include "Statystyki.h"
 using namespace std;
 
 #pragma once
@@ -34,11 +33,12 @@ public:
 		cout << "Stworz nowa postac" << endl << "Imie Twojego bohatera brzmi: ";
 		cin >> nazwa;
 
-		// wywolujemy konstruktor gracza podajac odpowiednie parametry
 		Ekwipunek ekwipunek;
-		ekwipunek.dodaj_przedmiot(Bron("Miecz", 5));
-		ekwipunek.dodaj_przedmiot(Bron("Topor", 5));
-		gracz = Gracz(nazwa, 20, 20, 20, 10, ekwipunek);
+		// dodajemy do ekwipunku miecz z odpowiednimy statysykami
+		ekwipunek.dodaj_przedmiot(Przedmiot("Miecz", Statystyki(0, 1, 0, 0, 0)));
+
+		// wywolujemy konstruktor gracza podajac odpowiednie parametry
+		gracz = Gracz(nazwa, Statystyki(10,2,2,2,1), ekwipunek);
 	}
 
 	// Tworzymy lokalizacje nadajac im nazwe, opis, i potwora jaki strzerze to miejsce i przedmiot do zdobycia
@@ -46,33 +46,33 @@ public:
 	{
 		lokalizacje.push_back(Lokalizacja("Krypta",
 			"Na samym srodku sciezki, dostrzegasz schody prowadzace w dol. Wyczuwasz potezna, mroczna, aure bijaca z czelusci tej sciezki. Krzewy i drzewa zdaja sie byc obumarle, a w zasiegu wzroku gesto scieli sie truchlo martwych zwierzat i rozsypane kosci",
-			Szkielet("Szkielet", 10, 4,  4, 2),
-			Pancerz("Helm", 10)));
+			Szkielet("Szkielet", Statystyki(10, 2, 2, 2, 1)),
+			Przedmiot("Helm", Statystyki(0, 0, 0, 1, 0))));
 
 		lokalizacje.push_back(Lokalizacja("Trakt kupiecki",
 			"Spogladajac na polnocny wschod widzisz martwego czlowieka, ktory lezy we wlasnej krwi, praktycznie bez odzienia. Na trawie dostrzegasz slady walki oraz rozerwany, mieszek zlota. ",
-			Bandyta("Bandyta", 10, 4,  4, 2),
-			Pancerz("Zbroja", 10)));
+			Bandyta("Bandyta", Statystyki(10, 2, 2, 2, 1)),
+			Przedmiot("Zbroja", Statystyki(0, 0, 0, 2, 0))));
 
 		lokalizacje.push_back(Lokalizacja("Las",
 			"Patrzac na polnocny zachod, dostrzegasz gesty las. Drzewa sa poranione i ociekajace zywica. Masz wrazenie jakby ktos niedawno ostrzyl sobie na nich pazury.",
-			Wilk("Wilk", 10, 4,  4, 2),
-			Bron("Miecz", 10)));
+			Wilk("Wilk", Statystyki(10, 2, 2, 2, 1)),
+			Przedmiot("Topor", Statystyki(0, 0, 1, 0, 0))));
 
 		lokalizacje.push_back(Lokalizacja("Pole bitwy",
 			"Na Zachodzie dostrzegasz wydeptane na drodze glebokie slady po ludzkich butach. Jednego jestes pewien, ktos bardzo obladowany musial udac sie ta droga.",
-			Zbrojny("Zbrojny", 10, 4,  4, 2),
-			Amulet("Naszyjnik", 5)));
+			Zbrojny("Zbrojny", Statystyki(10, 2, 2, 2, 1)),
+			Przedmiot("Naszyjnik", Statystyki(0, 2, 2, 0, 0))));
 
 		lokalizacje.push_back(Lokalizacja("Zamek",
 			"Daleko na polnocy dostrzegasz ogromne ruiny, ktore kiedys musialy byc czescia zamku. Choc piekno i potega tego budynku dawno miely, masz wrazenie, z to miejsce nie jest do konca opustoszale.",
-			Wladca("Wladca", 10, 4,  4, 2),
-			Amulet("Kamien teleportacyjny")));
+			Wladca("Wladca", Statystyki(10, 2, 2, 2, 1)),
+			Przedmiot("Kamien teleportacyjny", Statystyki(0, 0, 0, 0, 0))));
 	}
 
 	void wybierz_droge()
 	{
-		gracz.statystyki();
+		gracz.pobierz_statystyki();
 		for (int i = 0; i < lokalizacje.size(); i++)
 		{
 			cout << i << ") ";
@@ -81,9 +81,9 @@ public:
 		}
 
 		cout << "Dotarles do rozwidlenia " << lokalizacje.size() << " sciezek, gdzie tym razem poprowadzi Cie przeznaczenie? " << endl << endl;
-		
+
 		// wykorzystujemy dolaczona funkcje, posylamy maxymalna ilosc lokalizacji do wyboru, funkcja zwraca wybor gracza
-		int wybor = wybierz_opcje(lokalizacje.size()-1);
+		int wybor = wybierz_opcje(lokalizacje.size() - 1);
 
 		STAN wynik = lokalizacje[wybor].wejdz_do_lokalizacji(&gracz);
 		wybierz_dzialanie_wyniku(wynik, wybor);
