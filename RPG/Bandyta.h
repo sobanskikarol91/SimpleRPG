@@ -4,7 +4,7 @@ class Bandyta : public Przeciwnik
 {
 public:
 	Bandyta() : Przeciwnik() {};
-	Bandyta(string nazwa, int zycie, int sila, int zrecznosc, int obrazenia, int poziom)
-		: Przeciwnik(nazwa, zycie, sila, zrecznosc, obrazenia, poziom) {};
+	Bandyta(string nazwa, int zycie, int sila, int zrecznosc, int poziom)
+		: Przeciwnik(nazwa, zycie, sila, zrecznosc, poziom) {};
 };
 

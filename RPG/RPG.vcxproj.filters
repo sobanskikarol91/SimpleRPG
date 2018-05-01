@@ -78,6 +78,9 @@
     <ClCompile Include="Kolorowanie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Statystyki.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gra.h">
@@ -138,6 +141,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Kolorowanie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Statystyki.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

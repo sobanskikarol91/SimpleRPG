@@ -8,13 +8,13 @@ class Postac
 {
 protected:
 	string nazwa;
-	int zycie, sila, zrecznosc, obrazenia, poziom;
+	int zycie, sila, zrecznosc, poziom;
 
 public:
 	Postac() {};
 	// konstruktor z lista inicjalizacyjna sluzacy do tworzenia postaci 
-	Postac(string nazwa, int zycie, int sila, int zrecznosc, int obrazenia, int poziom) :
-		nazwa(nazwa), zycie(zycie), sila(sila), zrecznosc(zrecznosc), obrazenia(obrazenia), poziom(poziom) {}
+	Postac(string nazwa, int zycie, int sila, int zrecznosc, int poziom) :
+		nazwa(nazwa), zycie(zycie), sila(sila), zrecznosc(zrecznosc), poziom(poziom) {}
 
 	void statystyki()
 	{
@@ -24,7 +24,6 @@ public:
 		cout << "HP: " << zycie << "   ";
 		cout << "Sila: " << sila << "   ";
 		cout << "Zrecznosc: " << zrecznosc << "   ";
-		cout << "Obrazenia: " << obrazenia << "   " << endl;
 		cout << "=======================================================================================================================" << endl;
 	}
 

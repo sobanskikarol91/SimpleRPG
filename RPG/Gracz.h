@@ -13,8 +13,8 @@ public:
 	Gracz() : Postac() {};
 
 	// konstruktor z lista inicjalizacyjna sluzacy do tworzenia postaci gracza
-	Gracz(string nazwa, int zycie, int sila, int zrecznosc, int obrazenia, int poziom, Ekwipunek ekwipunek)
-		: Postac(nazwa, zycie, sila, zrecznosc, obrazenia, poziom), ekwipunek(ekwipunek) {};
+	Gracz(string nazwa, int zycie, int sila, int zrecznosc, int poziom, Ekwipunek ekwipunek)
+		: Postac(nazwa, zycie, sila, zrecznosc, poziom), ekwipunek(ekwipunek) {};
 
 	void otrzymuje_przedmiot(Przedmiot  przedmiot)
 	{

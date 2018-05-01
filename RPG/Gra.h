@@ -38,7 +38,7 @@ public:
 		Ekwipunek ekwipunek;
 		ekwipunek.dodaj_przedmiot(Bron("Miecz", 5));
 		ekwipunek.dodaj_przedmiot(Bron("Topor", 5));
-		gracz = Gracz(nazwa, 20, 20, 20, 20, 10, ekwipunek);
+		gracz = Gracz(nazwa, 20, 20, 20, 10, ekwipunek);
 	}
 
 	// Tworzymy lokalizacje nadajac im nazwe, opis, i potwora jaki strzerze to miejsce i przedmiot do zdobycia
@@ -46,27 +46,27 @@ public:
 	{
 		lokalizacje.push_back(Lokalizacja("Krypta",
 			"Na samym srodku sciezki, dostrzegasz schody prowadzace w dol. Wyczuwasz potezna, mroczna, aure bijaca z czelusci tej sciezki. Krzewy i drzewa zdaja sie byc obumarle, a w zasiegu wzroku gesto scieli sie truchlo martwych zwierzat i rozsypane kosci",
-			Szkielet("Szkielet", 10, 4, 4, 4, 2),
+			Szkielet("Szkielet", 10, 4,  4, 2),
 			Pancerz("Helm", 10)));
 
 		lokalizacje.push_back(Lokalizacja("Trakt kupiecki",
 			"Spogladajac na polnocny wschod widzisz martwego czlowieka, ktory lezy we wlasnej krwi, praktycznie bez odzienia. Na trawie dostrzegasz slady walki oraz rozerwany, mieszek zlota. ",
-			Bandyta("Bandyta", 10, 4, 4, 4, 2),
+			Bandyta("Bandyta", 10, 4,  4, 2),
 			Pancerz("Zbroja", 10)));
 
 		lokalizacje.push_back(Lokalizacja("Las",
 			"Patrzac na polnocny zachod, dostrzegasz gesty las. Drzewa sa poranione i ociekajace zywica. Masz wrazenie jakby ktos niedawno ostrzyl sobie na nich pazury.",
-			Wilk("Wilk", 10, 4, 4, 4, 2),
+			Wilk("Wilk", 10, 4,  4, 2),
 			Bron("Miecz", 10)));
 
 		lokalizacje.push_back(Lokalizacja("Pole bitwy",
 			"Na Zachodzie dostrzegasz wydeptane na drodze glebokie slady po ludzkich butach. Jednego jestes pewien, ktos bardzo obladowany musial udac sie ta droga.",
-			Zbrojny("Zbrojny", 10, 4, 4, 4, 2),
+			Zbrojny("Zbrojny", 10, 4,  4, 2),
 			Amulet("Naszyjnik", 5)));
 
 		lokalizacje.push_back(Lokalizacja("Zamek",
 			"Daleko na polnocy dostrzegasz ogromne ruiny, ktore kiedys musialy byc czescia zamku. Choc piekno i potega tego budynku dawno miely, masz wrazenie, z to miejsce nie jest do konca opustoszale.",
-			Wladca("Wladca", 10, 4, 4, 4, 2),
+			Wladca("Wladca", 10, 4,  4, 2),
 			Amulet("Kamien teleportacyjny")));
 	}
 

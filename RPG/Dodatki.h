@@ -17,11 +17,9 @@ static void nacisnij_klawisz()
 static int wybierz_opcje(int max, int min = 0)
 {
 	int wybor;
-
 	// nieskonczona petla wykonuje sie dopoki gracz wprowadza bledne dane
 	while (1)
 	{
-		int wybor;
 		cin >> wybor;
 
 		if (wybor < min || wybor > max) 	// wykonujemy program do chwli az gracz poda poprawna wartosc

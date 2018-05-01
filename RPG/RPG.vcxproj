@@ -132,6 +132,7 @@
     <ClCompile Include="Przedmiot.cpp" />
     <ClCompile Include="RPG.cpp" />
     <ClCompile Include="Stan.cpp" />
+    <ClCompile Include="Statystyki.cpp" />
     <ClCompile Include="Szkielet.cpp" />
     <ClCompile Include="Wilk.cpp" />
     <ClCompile Include="Wladca.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Przeciwnik.h" />
     <ClInclude Include="Przedmiot.h" />
     <ClInclude Include="Stan.h" />
+    <ClInclude Include="Statystyki.h" />
     <ClInclude Include="Szkielet.h" />
     <ClInclude Include="Wilk.h" />
     <ClInclude Include="Wladca.h" />
