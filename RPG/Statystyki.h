@@ -78,7 +78,6 @@ public:
 		if (plik.good() == true)
 		{
 			plik >> zycie >> sila >> zrecznosc >> obrona >> poziom;
-			cout << zycie << sila << zrecznosc << obrona << poziom;
 		}
 		else
 			cout << "blad pliku: " + nazwa_pliku << endl;

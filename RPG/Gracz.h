@@ -104,7 +104,7 @@ public:
 		fstream plik;
 		string nazwa_laczona = nazwa_pliku + "_" + nazwa;
 		plik.open(nazwa_laczona + ".txt", ios::out);
-		cout << "Zapisuje w : " << nazwa_laczona << endl;
+
 		if (plik.good() == true)
 		{
 			plik << nazwa;

@@ -60,7 +60,6 @@ public:
 		if (plik.good() == true)
 		{
 			plik >> nazwa_pliku >> wyposazony;
-			cout << "nazwa: " << nazwa << " Wyposazony: " << wyposazony << endl;
 			statystyki.wczytaj_dane(nazwa_laczona);
 		}
 		else
