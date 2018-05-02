@@ -92,23 +92,38 @@ public:
 		int sila_potwory = przeciwnik.atak();
 		int sila_gracza = gracz->atak();
 
+		int obrona_potwora = przeciwnik.pobierz_statystyki().pobierz_obrona();
+		int obrona_gracza = gracz->pobierz_statystyki().pobierz_obrona();
+
+		int obrazenia_gracza = sila_gracza - obrona_potwora;
+		int obrazenia_potwora = sila_potwory - obrona_gracza;
+
 		cout << "==============================================================" << endl;
 		zmien_kolor_txt(CZERWONY);
 		cout << "Sila potwora: " << sila_potwory << endl;
-
-		zmien_kolor_txt(ZIELONY);
-		cout << "Sila gracza:  " << sila_gracza << endl;
-		zmien_kolor_txt(ZOLTY);
+		cout << "Obrona potwora: " << obrona_potwora << endl;
 		cout << "==============================================================" << endl;
 
+		zmien_kolor_txt(ZIELONY);
+		cout << "Sila " << gracz->pobierz_nazwa()   << " " << sila_gracza << endl;
+		cout << "Obrona " << gracz->pobierz_nazwa() <<  " " << obrona_gracza << endl;
+		zmien_kolor_txt(ZOLTY);
 
-		if (sila_potwory >= sila_gracza)
+		cout << "==============================================================" << endl;
+		zmien_kolor_txt(SELEDYNOWY);
+		cout << "Obrazenia: " << gracz->pobierz_nazwa() << "  " << sila_gracza - obrona_potwora << " vs ";
+		cout << obrazenia_potwora << "  Potwor" << endl;
+
+
+		zmien_kolor_txt(ZOLTY);
+		// bierzemy pod uwage wlasna obrone i sile atakujacego.
+		if (obrazenia_potwora >= obrazenia_gracza)
 			return STAN::PORAZKA;
 		else
 			return STAN::WYGRANA; // udalo sie wygrac wiec zwracamy taki stan
 	}
 
-	string pobierz_nazwa() { return nazwa;}
+	string pobierz_nazwa() { return nazwa; }
 	STAN menu_wyboru_walki(Gracz * gracz)
 	{
 		cout << "Na Twojej drodze staje: " << endl;
@@ -171,7 +186,7 @@ public:
 		if (plik.good())
 		{
 			string przeciwnik_nazwa, przedmiot_nazwa;
-			plik >> nazwa  >> przeciwnik_nazwa >> przedmiot_nazwa;
+			plik >> nazwa >> przeciwnik_nazwa >> przedmiot_nazwa;
 			przeciwnik.wczytaj_dane(nazwa_laczona + "_" + przeciwnik_nazwa);
 			przedmiot.wczytaj_dane(nazwa_laczona + "_" + przedmiot_nazwa);
 		}
