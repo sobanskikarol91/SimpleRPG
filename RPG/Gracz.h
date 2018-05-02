@@ -8,6 +8,7 @@
 class Gracz : public Postac, public Menu
 {
 	Ekwipunek ekwipunek;
+
 public:
 	// domyslny konstruktor wywolujemy rowniez na liscie inicjalizacyjej konstruktor klasy bazowej
 	Gracz() : Postac() {};
@@ -50,7 +51,7 @@ public:
 		Postac::informacje();   // informacje z klasy bazowej
 		zmien_kolor_txt(ZOLTY);
 
-		vector<Przedmiot> aktywne_przedmioty =  ekwipunek.spis_aktywnych_przedmiotow();
+		vector<Przedmiot> aktywne_przedmioty = ekwipunek.spis_aktywnych_przedmiotow();
 
 		// jezeli sa jakies aktywne przedmioty
 		if (aktywne_przedmioty.size())
@@ -58,7 +59,7 @@ public:
 			// to wypisujemy o nich informacje
 			for (unsigned int i = 0; i < aktywne_przedmioty.size(); i++)
 			{
-				cout <<  "=======================================================================================================================" << endl;
+				cout << "=======================================================================================================================" << endl;
 				aktywne_przedmioty[i].informacja();
 			}
 			Statystyki statystyki_gracza_przedmiotow = ekwipunek.oblicz_bonusy_przedmiotow() + statystyki;
@@ -86,7 +87,7 @@ public:
 		{
 		case 1:
 		{
-			informacje(); 
+			informacje();
 			nacisnij_klawisz();
 		}
 		break;
@@ -97,5 +98,22 @@ public:
 			break;
 		}
 	}
+
+	// Przeciazenie operatorow zapisu do pliku
+	friend ostream & operator<<(ostream & plik, const Gracz & s)
+	{
+		// uzywamy operatora<< z klasy postac i dopisujemy kilka zmian
+		return	plik << static_cast <const Postac &>(s) << " " << s.ekwipunek;
+	}
+
+	/*
+   // Przeciazenie operatorow odczytu z pliku
+	friend istream & operator>>(istream & plik, Postac & s)
+   {
+	   string linia;
+	   while (getline(plik, linia));
+	   return plik;
+   }
+   */
 };
 

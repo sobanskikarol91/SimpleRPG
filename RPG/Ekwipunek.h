@@ -67,7 +67,7 @@ public:
 
 		return suma;
 	}
-
+	
 	void menu()
 	{
 		przegladaj();
@@ -108,6 +108,15 @@ public:
 		}
 		nacisnij_klawisz();
 		menu();
+	}
+
+	friend ostream & operator<<(ostream & plik, const Ekwipunek & e)
+	{
+		// zapisujemy wszystkie przedmioty do pliku
+		for (unsigned int i = 0; i < e.przedmioty.size(); i++)
+			plik << e.przedmioty[i] << endl;
+
+		return plik;
 	}
 };
 

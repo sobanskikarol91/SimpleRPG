@@ -173,15 +173,11 @@ public:
 	{
 		fstream plik("zapis.txt", std::ios::out);
 
-		cout << "kura co jest";
-		nacisnij_klawisz();
-		plik << "a";
-		string napis = "222";
-		plik.write(&napis[0], napis.length()); //zapisuje dane poczynaj¹c od 0 indeksu
 		if (plik.good()) // sprawdzenie czy udalo sie uzyskac dostep do pliku
-		{
-			
-			
+		{	
+			nacisnij_klawisz();
+			plik << gracz;
+			cout << "Zapisano gre...";
 		}
 		plik.close();
 	}

@@ -57,10 +57,10 @@ public:
 	}
 
 	// Przeciazenie operatorow zapisu do pliku
-	friend ostream & operator<<(ostream & plik, Statystyki & s)
+	friend ostream & operator<<(ostream & plik, const Statystyki & s)
 	{
-		plik << s.zycie << " " << s.sila << " " << " " << s.zrecznosc << " " << s.obrona << " " << s.poziom;
-		return  plik;
+	return	plik << s.zycie << " " << s.sila << " " << " " << s.zrecznosc << " " << s.obrona << " " << s.poziom;
+
 	}
 
 	// Przeciazenie operatorow odczytu z pliku

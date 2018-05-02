@@ -32,6 +32,11 @@ public:
 		}
 		statystyki.informacja();
 	}
+
+	friend	ostream & operator<<(ostream & plik,const Przedmiot & p)
+	{
+		return plik << p.nazwa << " " << p.wyposazony << " " << p.statystyki;
+	}
 };
 
 
