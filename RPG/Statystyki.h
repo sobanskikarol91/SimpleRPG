@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include "IPlik.h"
+#include "Kolorowanie.h"
 
 using namespace std;
 
@@ -19,11 +20,12 @@ public:
 
 	void informacja()
 	{
-		cout << "Poziom: " << poziom << "   ";
-		cout << "HP: " << zycie << "   ";
-		cout << "Sila: " << sila << "   ";
-		cout << "Obrona: " << obrona << "   ";
-		cout << "Zrecznosc: " << zrecznosc << "   " << endl;
+		cout << "Poziom: ", koloruj_dodatnie(poziom);
+		cout << "HP: ", koloruj_dodatnie(zycie);
+		cout << "Sila: ", koloruj_dodatnie(sila);
+		cout << "Obrona: ", koloruj_dodatnie(obrona);
+		cout << "Zrecznosc: ", koloruj_dodatnie(zrecznosc);
+		cout << endl;
 	}
 
 	// gettery
@@ -59,10 +61,10 @@ public:
 		return Statystyki(zycie + s.zycie, sila + s.sila, zrecznosc + s.zrecznosc, obrona + s.obrona, 0); // poziomu nie dodajemy
 	}
 
-	virtual void zapisz_dane(string nazwa_pliku) 
+	virtual void zapisz_dane(string nazwa_pliku)
 	{
 		fstream plik;
-		plik.open(nazwa_pliku +  "_statystyki" + ".txt", ios::out);
+		plik.open(nazwa_pliku + "_statystyki" + ".txt", ios::out);
 
 		if (plik.good() == true)
 			plik << zycie << " " << sila << " " << zrecznosc << " " << obrona << " " << poziom;

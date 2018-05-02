@@ -10,7 +10,7 @@ enum KOLOR { ZIELONY = 10, SELEDYNOWY = 11, CZERWONY = 12, ZOLTY = 14 };
 // sluzy do kolorowania i wypisywania tekstu jaki wysylamy jako parametr domyslnie zawsze ebdzie enter po tekscie
 static void koloruj_txt(string tekst, KOLOR kolor, bool enter = true)
 {
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), kolor); // koloruj  na zielono
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), kolor); // koloruj  
 	cout << tekst;
 
 	if (enter)  cout << endl;
@@ -23,13 +23,13 @@ static void zmien_kolor_txt(KOLOR kolor)
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), kolor); // koloruj  na  wybrany kolor
 }
 
-// kolorujemy tylko dodatnie wartosci przyda sie przy statystykach przedmiotow aby wyodrebnic te wieksze od 0
-static void koloruj_dodatnie(int wartosc, KOLOR kolor)
+// kolorujemy tylko dodatnie wartosci przyda sie przy statystykach przedmiotow aby wyroznic te wieksze od 0
+static void koloruj_dodatnie(int wartosc, KOLOR kolor = ZIELONY)
 {
 	if (wartosc > 0)
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), kolor); // koloruj  na zielono
 
-	cout << wartosc;
+	cout << wartosc << " ";
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ZOLTY);    // koloruj  na zolto
 }
 
