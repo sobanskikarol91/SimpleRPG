@@ -1,6 +1,6 @@
+#pragma once
 #include <cstdlib> // do losowania rand()
 
-#pragma once
 class Kostka
 {
 	int min;

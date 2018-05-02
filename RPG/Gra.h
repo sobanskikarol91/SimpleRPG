@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,15 +9,15 @@
 #include "Wilk.h"
 #include "Wladca.h"
 #include "Zbrojny.h"
-#include "Bandyta.h"
+#include "Bandyta.h" 
 #include "Przedmiot.h"
 #include "Stan.h" // pozwala na przeslanie wiadomosci zwrotnej, wyboru gracza z lokalizacji
 #include "Dodatki.h"
 #include "Statystyki.h"
+#include "IPlik.h"
 using namespace std;
 
-#pragma once
-class Gra
+class Gra : IPlik
 {
 	Gracz gracz;
 	// spis wszystkich lokalizacji w grze
@@ -49,7 +50,7 @@ public:
 			"Na samym srodku sciezki, dostrzegasz schody prowadzace w dol. Wyczuwasz potezna, mroczna, aure bijaca z czelusci tej sciezki. Krzewy i drzewa zdaja sie byc obumarle, a w zasiegu wzroku gesto scieli sie truchlo martwych zwierzat i rozsypane kosci",
 			Szkielet("Szkielet", Statystyki(10, 2, 2, 2, 1)),
 			Przedmiot("Helm", Statystyki(0, 0, 0, 1, 0))));
-
+/*
 		lokalizacje.push_back(Lokalizacja("Trakt kupiecki",
 			"Spogladajac na polnocny wschod widzisz martwego czlowieka, ktory lezy we wlasnej krwi, praktycznie bez odzienia. Na trawie dostrzegasz slady walki oraz rozerwany, mieszek zlota. ",
 			Bandyta("Bandyta", Statystyki(10, 2, 2, 2, 1)),
@@ -69,6 +70,7 @@ public:
 			"Daleko na polnocy dostrzegasz ogromne ruiny, ktore kiedys musialy byc czescia zamku. Choc piekno i potega tego budynku dawno miely, masz wrazenie, ze to miejsce nie jest do konca opustoszale.",
 			Wladca("Wladca", Statystyki(10, 2, 2, 2, 1)),
 			Przedmiot("Kamien teleportacyjny", Statystyki(0, 0, 0, 0, 0)))); 
+			*/
 	}
 
 	void wybierz_droge()
@@ -165,20 +167,57 @@ public:
 	void rozpocznij_gre()
 	{
 		stworz_postac();
-		zapisz();
-		//menu_glowne();
+		zapisz_dane("zapisy/");
+		wczytaj_dane("zapisy/");
 	}
-
-	void zapisz() 
-	{
-
-	}
-
-	void wczytaj() {};
 
 	void wyjscie()
 	{
 		cout << "Zegnaj";
 		nacisnij_klawisz();
+	}
+
+	virtual void zapisz_dane(string nazwa_pliku)
+	{
+		fstream plik;
+		plik.open(nazwa_pliku + "gra.txt", ios::out);
+
+		if (plik.good() == true)
+		{
+			string nazwa_gracza = gracz.pobierz_nazwa();
+			//plik << nazwa_gracza << " \n";
+			//gracz.zapisz_dane(nazwa_pliku);
+
+			for (int i = 0; i < lokalizacje.size(); i++)
+			{
+				plik << lokalizacje[i].pobierz_nazwa() << " ";
+				lokalizacje[i].zapisz_dane(nazwa_pliku);
+			}
+		}
+
+		plik.close();
+	}
+
+	virtual void wczytaj_dane(string nazwa_pliku)
+	{
+		fstream plik;
+		plik.open(nazwa_pliku + "gra.txt", ios::in);
+
+		if (plik.good() == true)
+		{
+			string nazwa_lokalizacji, nazwa_gracza;
+			//plik >> nazwa_gracza;
+			//gracz.wczytaj_dane(nazwa_pliku + "_" + nazwa_gracza);
+
+			for (int i = 0; i < lokalizacje.size(); i++)
+			{
+				plik >> nazwa_lokalizacji;
+				lokalizacje[i].wczytaj_dane(nazwa_pliku + "_" + nazwa_lokalizacji);
+			}
+		}
+		else
+			cout << "blad pliku: " + nazwa_pliku << endl;
+
+		plik.close();
 	}
 };

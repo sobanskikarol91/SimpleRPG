@@ -1,5 +1,5 @@
-#include "Przeciwnik.h"
 #pragma once
+#include "Przeciwnik.h"
 
 class Szkielet : public Przeciwnik
 {

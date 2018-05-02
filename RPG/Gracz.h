@@ -5,7 +5,7 @@
 #include "Menu.h"
 #include "Dodatki.h"
 
-class Gracz : public Postac, public Menu
+class Gracz : public Postac, public Menu, public IPlik
 {
 	Ekwipunek ekwipunek;
 
@@ -97,6 +97,40 @@ public:
 		case 3:
 			break;
 		}
+	}
+
+	virtual void zapisz_dane(string nazwa_pliku)
+	{ 
+		fstream plik;
+		string nazwa_laczona = nazwa_pliku + "_" + nazwa;
+		plik.open(nazwa_laczona + ".txt", ios::out);
+		cout << "Zapisuje w : " << nazwa_laczona << endl;
+		if (plik.good() == true)
+		{
+			plik << nazwa;
+			statystyki.zapisz_dane(nazwa_laczona);
+			ekwipunek.zapisz_dane(nazwa_laczona);
+		}
+
+		plik.close();
+	}
+
+	virtual void wczytaj_dane(string nazwa_pliku)
+	{
+		fstream plik;
+		string nazwa_laczona = nazwa_pliku;
+		plik.open(nazwa_laczona + ".txt", ios::in);
+
+		if (plik.good() == true)
+		{
+			plik >> nazwa;
+			ekwipunek.wczytaj_dane(nazwa_laczona);
+			statystyki.wczytaj_dane(nazwa_laczona);
+		}
+		else
+			cout << "blad pliku: " + nazwa_laczona << endl;
+
+		plik.close();
 	}
 };
 

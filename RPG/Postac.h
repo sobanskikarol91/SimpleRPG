@@ -1,10 +1,11 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include "Kostka.h"
 #include "Statystyki.h"
 using namespace std;
 
-#pragma once
+
 class Postac
 {
 protected:
@@ -12,7 +13,7 @@ protected:
 	Statystyki statystyki;
 
 public:
-	Postac() {};
+	Postac() :nazwa("Bezimienny") {};
 	// konstruktor z lista inicjalizacyjna sluzacy do tworzenia postaci 
 	Postac(string nazwa, Statystyki statystyki) :
 		nazwa(nazwa), statystyki(statystyki) {}
@@ -21,6 +22,7 @@ public:
 	// Gracz i przeciwnik beda implementowac inaczej ta metode, dlatego jest czysto wirtualna przez co klasa jest abstrakcyjna
 	virtual int atak() = 0;
 	Statystyki pobierz_statystyki() { return statystyki; }
+	string pobierz_nazwa() { return nazwa; }
 	void informacje()
 	{
 		cout << nazwa << endl;

@@ -65,7 +65,7 @@ public:
 		plik.open(nazwa_pliku +  "_statystyki" + ".txt", ios::out);
 
 		if (plik.good() == true)
-			plik << zycie << " " << sila << " " << " " << zrecznosc << " " << obrona << " " << poziom;
+			plik << zycie << " " << sila << " " << zrecznosc << " " << obrona << " " << poziom;
 
 		plik.close();
 	}

@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "Przeciwnik.h"
 #include "Przedmiot.h"
@@ -5,9 +6,9 @@
 #include "Gracz.h"
 #include "Dodatki.h"    // przydadza sie funkcje wyboru
 #include "Kolorowanie.h" // kolorowanie skladni
+#include "IPlik.h"
 
-#pragma once
-class Lokalizacja
+class Lokalizacja : IPlik
 {
 	Przeciwnik przeciwnik;
 	Przedmiot przedmiot;
@@ -107,6 +108,7 @@ public:
 			return STAN::WYGRANA; // udalo sie wygrac wiec zwracamy taki stan
 	}
 
+	string pobierz_nazwa() { return nazwa;}
 	STAN menu_wyboru_walki(Gracz * gracz)
 	{
 		cout << "Na Twojej drodze staje: " << endl;
@@ -139,6 +141,44 @@ public:
 			}
 		}
 		}
+	}
+
+	virtual void zapisz_dane(string nazwa_pliku)
+	{
+		fstream plik;
+		string nazwa_laczona = nazwa_pliku + "_" + nazwa;
+		plik.open(nazwa_laczona + ".txt", ios::out);
+
+		if (plik.good() == true)
+		{
+			plik << nazwa << endl;
+			plik << przeciwnik.pobierz_nazwa() << endl;
+			plik << przedmiot.pobierz_nazwa() << endl;
+
+			przeciwnik.zapisz_dane(nazwa_laczona);
+			przedmiot.zapisz_dane(nazwa_laczona);
+		}
+
+		plik.close();
+	}
+
+	virtual void wczytaj_dane(string nazwa_pliku)
+	{
+		fstream plik;
+		string nazwa_laczona = nazwa_pliku;
+		plik.open(nazwa_laczona + ".txt", ios::in);
+
+		if (plik.good() == true)
+		{
+			string przeciwnik_nazwa, przedmiot_nazwa;
+			plik >> nazwa  >> przeciwnik_nazwa >> przedmiot_nazwa;
+			przeciwnik.wczytaj_dane(nazwa_laczona + "_" + przeciwnik_nazwa);
+			przedmiot.wczytaj_dane(nazwa_laczona + "_" + przedmiot_nazwa);
+		}
+		else
+			cout << "blad pliku: " + nazwa_laczona << endl;
+
+		plik.close();
 	}
 };
 

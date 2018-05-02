@@ -64,7 +64,7 @@ public:
 			statystyki.wczytaj_dane(nazwa_laczona);
 		}
 		else
-			cout << "blad pliku: " + nazwa_pliku << endl;
+			cout << "Przedmiot blad pliku: " + nazwa_laczona << endl;
 
 		plik.close();
 	}

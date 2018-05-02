@@ -70,7 +70,7 @@ public:
 
 	void menu()
 	{
-		przegladaj();
+		przegladaj(); 
 
 		cout << przedmioty.size() << ") Exit" << endl;
 		cout << "Wybierz numer przedmiotu: ";
@@ -117,9 +117,7 @@ public:
 		plik.open(nazwa_laczona + ".txt", ios::out);
 
 		if (plik.good() == true)
-		{
-			
-
+		{		
 			for (int i = 0; i < przedmioty.size(); i++)
 			{
 				// przechowujemy nazwy przedmiotow w ekwipunku;
@@ -147,7 +145,7 @@ public:
 			}
 		}
 		else
-			cout << "blad pliku: " + nazwa_pliku << endl;
+			cout << "blad pliku: " + nazwa_laczona << endl;
 
 		plik.close();
 	}
