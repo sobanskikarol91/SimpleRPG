@@ -143,7 +143,7 @@ public:
 			{
 				string nazwa_przedmiotu;
 				plik >> nazwa_przedmiotu;
-				przedmioty[i].wczytaj_dane(nazwa_laczona+ + "_" + nazwa_przedmiotu);
+				przedmioty[i].wczytaj_dane(nazwa_laczona + "_" + nazwa_przedmiotu);
 			}
 		}
 		else

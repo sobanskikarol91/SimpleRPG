@@ -34,7 +34,8 @@ public:
 		statystyki.informacja();
 	}
 
-	 string pobierz_nazwa(){ return nazwa; }
+	string pobierz_nazwa() { return nazwa; }
+
 	virtual void zapisz_dane(string nazwa_pliku)
 	{
 		fstream plik;
@@ -43,7 +44,7 @@ public:
 
 		if (plik.good() == true)
 		{
-			plik << nazwa_pliku << " " << wyposazony;
+			plik << nazwa << " " << wyposazony;
 			statystyki.zapisz_dane(nazwa_laczona);
 		}
 
@@ -53,7 +54,7 @@ public:
 	virtual void wczytaj_dane(string nazwa_pliku)
 	{
 		fstream plik;
-		string nazwa_laczona = nazwa_pliku + nazwa;
+		string nazwa_laczona = nazwa_pliku;
 		plik.open(nazwa_laczona + ".txt", ios::in);
 
 		if (plik.good() == true)
