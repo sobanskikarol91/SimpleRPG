@@ -24,7 +24,7 @@ class Gra : IPlik
 	vector <Lokalizacja> lokalizacje;
 public:
 
-	void stworz_postac()
+	void stworz_gracza()
 	{
 		string nazwa;
 		zmien_kolor_txt(ZOLTY); // kolorujemy tekst od tej pory na zolto
@@ -36,7 +36,7 @@ public:
 		ekwipunek.dodaj_przedmiot(Przedmiot("Miecz", Statystyki(0, 1, 0, 0, 0)));
 
 		// wywolujemy konstruktor gracza podajac odpowiednie parametry
-		gracz = Gracz(nazwa, Statystyki(10, 5, 5, 5, 1), ekwipunek);
+		gracz = Gracz(nazwa, Statystyki(10, 3, 3, 3, 1), ekwipunek);
 		cout << "Postac stworzona! Witaj " << gracz.pobierz_nazwa() << "!" << endl;
 	}
 
@@ -45,29 +45,28 @@ public:
 	{
 		lokalizacje.push_back(Lokalizacja("Krypta",
 			"Na samym srodku sciezki, dostrzegasz schody prowadzace w dol. Wyczuwasz potezna, mroczna, aure bijaca z czelusci tej sciezki. Krzewy i drzewa zdaja sie byc obumarle, a w zasiegu wzroku gesto scieli sie truchlo martwych zwierzat i rozsypane kosci",
-			Szkielet("Szkielet", Statystyki(10, 2, 2, 2, 1)),
+			Szkielet("Szkielet", Statystyki(10, 4, 3, 0, 5)),
 			Przedmiot("Helm", Statystyki(0, 0, 0, 1, 0))));
-
-		lokalizacje.push_back(Lokalizacja("Trakt",
-			"Spogladajac na polnocny wschod widzisz martwego czlowieka, ktory lezy we wlasnej krwi, praktycznie bez odzienia. Na trawie dostrzegasz slady walki oraz rozerwany, mieszek zlota. ",
-			Bandyta("Bandyta", Statystyki(10, 2, 2, 2, 1)),
-			Przedmiot("Zbroja", Statystyki(0, 0, 0, 2, 0))));
 
 		lokalizacje.push_back(Lokalizacja("Las",
 			"Patrzac na polnocny zachod, dostrzegasz gesty las. Drzewa sa poranione i ociekajace zywica. Masz wrazenie jakby ktos niedawno ostrzyl sobie na nich pazury.",
-			Wilk("Wilk", Statystyki(10, 2, 2, 2, 1)),
+			Wilk("Wilk", Statystyki(10, 3, 6, 0, 1)),
 			Przedmiot("Topor", Statystyki(0, 0, 1, 0, 0))));
-		/*
+
+		lokalizacje.push_back(Lokalizacja("Trakt",
+			"Spogladajac na polnocny wschod widzisz martwego czlowieka, ktory lezy we wlasnej krwi, praktycznie bez odzienia. Na trawie dostrzegasz slady walki oraz rozerwany, mieszek zlota. ",
+			Bandyta("Bandyta", Statystyki(10, 5, 5, 1, 1)),
+			Przedmiot("Zbroja", Statystyki(0, 0, 0, 2, 0))));
+
 		lokalizacje.push_back(Lokalizacja("Pobojowisko",
 			"Na Zachodzie dostrzegasz wydeptane na drodze glebokie slady po ludzkich butach. Jednego jestes pewien, ktos bardzo obladowany musial udac sie ta droga.",
-			Zbrojny("Zbrojny", Statystyki(10, 2, 2, 2, 1)),
+			Zbrojny("Zbrojny", Statystyki(10, 6, 2, 2, 1)),
 			Przedmiot("Naszyjnik", Statystyki(0, 2, 2, 0, 0))));
 
 		lokalizacje.push_back(Lokalizacja("Zamek",
 			"Daleko na polnocy dostrzegasz ogromne ruiny, ktore kiedys musialy byc czescia zamku. Choc piekno i potega tego budynku dawno miely, masz wrazenie, ze to miejsce nie jest do konca opustoszale.",
-			Wladca("Wladca", Statystyki(10, 2, 2, 2, 1)),
-			Przedmiot("Kamien teleportacyjny", Statystyki(0, 0, 0, 0, 0))));
-			*/
+			Wladca("Wladca", Statystyki(10, 8, 5, 3, 6)),
+			Przedmiot("Kamien-teleportacyjny", Statystyki(0, 0, 0, 0, 0))));
 	}
 
 	void wybierz_droge()
@@ -117,8 +116,7 @@ public:
 		}
 		case PORAZKA:
 			koloruj_txt("(Przegrana) Mniam mniam, powiedzial potwor jedzacy Twoje zwloki", CZERWONY);
-			nacisnij_klawisz();
-			exit(0);
+			wyjscie();
 		default:
 			break;
 		}
@@ -130,7 +128,6 @@ public:
 		if (lokalizacje.size() == 0)
 		{
 			cout << "Doszedles do konca swojej podrozy udalo Ci sie pokonac wszystkich przeciwnikow oraz wladce wyspy!" << endl;
-			nacisnij_klawisz();
 			exit(0);
 		}
 	}
@@ -155,7 +152,7 @@ public:
 			break;
 		}
 		case 3:
-			exit(0); // definytywnie wychodzimy z gry
+			wyjscie(); // definytywnie wychodzimy z gry
 		}
 
 		menu_glowne(); // zawsze wracamy do menu glownego, no chyba ze wybierzemy wyjscie z gry
@@ -171,16 +168,15 @@ public:
 		switch (wybor)
 		{
 		case 1:
-			stworz_postac();
+			stworz_gracza();
 			stworz_lokalizacje();
 			zapisz_dane("zapis/");
-			wczytaj_dane("zapis/");
 			break;
 		case 2:
 			wczytaj_dane("zapis/");
 			break;
 		default:
-			exit(0);
+			wyjscie();
 			break;
 		}
 		menu_glowne();
@@ -190,6 +186,7 @@ public:
 	{
 		cout << "Zegnaj";
 		nacisnij_klawisz();
+		exit(0);
 	}
 
 	virtual void zapisz_dane(string nazwa_pliku)

@@ -121,7 +121,6 @@ public:
 			for (int i = 0; i < przedmioty.size(); i++)
 			{
 				// przechowujemy nazwy przedmiotow w ekwipunku;
-				cout << "Zapisuje jako: " << przedmioty[i].pobierz_nazwa();
 				plik << przedmioty[i].pobierz_nazwa() << " ";
 				przedmioty[i].zapisz_dane(nazwa_laczona);
 			}

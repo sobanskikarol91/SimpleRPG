@@ -20,11 +20,11 @@ public:
 
 	void informacja()
 	{
-		cout << "Poziom: ", koloruj_dodatnie(poziom);
-		cout << "HP: ", koloruj_dodatnie(zycie);
-		cout << "Sila: ", koloruj_dodatnie(sila);
-		cout << "Obrona: ", koloruj_dodatnie(obrona);
-		cout << "Zrecznosc: ", koloruj_dodatnie(zrecznosc);
+		cout << "Poziom: "; koloruj_dodatnie(poziom);
+		cout << "HP: "; koloruj_dodatnie(zycie);
+		cout << "Sila: "; koloruj_dodatnie(sila);
+		cout << "Obrona: "; koloruj_dodatnie(obrona);
+		cout << "Zrecznosc: "; koloruj_dodatnie(zrecznosc);
 		cout << endl;
 	}
 
