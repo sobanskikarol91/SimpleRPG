@@ -2,6 +2,9 @@
 #include <iostream>
 #include <sstream> // do pracy ze strumieniem
 #include <string>
+#include <fstream>
+#include "IPlik.h"
+
 using namespace std;
 
 class Statystyki
@@ -56,18 +59,30 @@ public:
 		return Statystyki(zycie + s.zycie, sila + s.sila, zrecznosc + s.zrecznosc, obrona + s.obrona, 0); // poziomu nie dodajemy
 	}
 
-	// Przeciazenie operatorow zapisu do pliku
-	friend ostream & operator<<(ostream & plik, const Statystyki & s)
+	virtual void zapisz_dane(string nazwa_pliku) 
 	{
-	return	plik << s.zycie << " " << s.sila << " " << " " << s.zrecznosc << " " << s.obrona << " " << s.poziom;
+		fstream plik;
+		plik.open(nazwa_pliku +  "_statystyki" + ".txt", ios::out);
 
+		if (plik.good() == true)
+			plik << zycie << " " << sila << " " << " " << zrecznosc << " " << obrona << " " << poziom;
+
+		plik.close();
 	}
 
-	// Przeciazenie operatorow odczytu z pliku
-	friend istream & operator>>(istream & plik, Statystyki & s)
+	virtual void wczytaj_dane(string nazwa_pliku)
 	{
-		string linia;
-		while (getline(plik, linia)); // wykonuj dopoki mozesz pobierac linie z pliku
-		return plik;
+		fstream plik;
+		plik.open(nazwa_pliku + "_statystyki" + ".txt", ios::in);
+
+		if (plik.good() == true)
+		{
+			plik >> zycie >> sila >> zrecznosc >> obrona >> poziom;
+			cout << zycie << sila << zrecznosc << obrona << poziom;
+		}
+		else
+			cout << "blad pliku: " + nazwa_pliku << endl;
+
+		plik.close();
 	}
 };

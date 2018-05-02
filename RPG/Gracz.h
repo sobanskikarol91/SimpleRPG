@@ -98,22 +98,5 @@ public:
 			break;
 		}
 	}
-
-	// Przeciazenie operatorow zapisu do pliku
-	friend ostream & operator<<(ostream & plik, const Gracz & s)
-	{
-		// uzywamy operatora<< z klasy postac i dopisujemy kilka zmian
-		return	plik << static_cast <const Postac &>(s) << " " << s.ekwipunek;
-	}
-
-	/*
-   // Przeciazenie operatorow odczytu z pliku
-	friend istream & operator>>(istream & plik, Postac & s)
-   {
-	   string linia;
-	   while (getline(plik, linia));
-	   return plik;
-   }
-   */
 };
 

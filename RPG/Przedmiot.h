@@ -3,6 +3,7 @@
 #include <string>
 #include "Statystyki.h"
 #include "Kolorowanie.h"
+#include "IPlik.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ private:
 	Statystyki statystyki;
 
 public:
-	Przedmiot() :wyposazony(false) {}
+	Przedmiot() :nazwa("Brak"), wyposazony(false) {}
 	Przedmiot(string nazwa, Statystyki statystyki) : nazwa(nazwa), statystyki(statystyki), wyposazony(false) {}
 	bool sprawdz_czy_wyposazony() { return wyposazony; }
 	void ustaw_wyposazony(bool stan) { wyposazony = stan; }
@@ -33,9 +34,38 @@ public:
 		statystyki.informacja();
 	}
 
-	friend	ostream & operator<<(ostream & plik,const Przedmiot & p)
+	 string pobierz_nazwa(){ return nazwa; }
+	virtual void zapisz_dane(string nazwa_pliku)
 	{
-		return plik << p.nazwa << " " << p.wyposazony << " " << p.statystyki;
+		fstream plik;
+		string nazwa_laczona = nazwa_pliku + "_" + nazwa;
+		plik.open(nazwa_laczona + ".txt", ios::out);
+
+		if (plik.good() == true)
+		{
+			plik << nazwa_pliku << " " << wyposazony;
+			statystyki.zapisz_dane(nazwa_laczona);
+		}
+
+		plik.close();
+	}
+
+	virtual void wczytaj_dane(string nazwa_pliku)
+	{
+		fstream plik;
+		string nazwa_laczona = nazwa_pliku + nazwa;
+		plik.open(nazwa_laczona + ".txt", ios::in);
+
+		if (plik.good() == true)
+		{
+			plik >> nazwa_pliku >> wyposazony;
+			cout << "nazwa: " << nazwa << " Wyposazony: " << wyposazony << endl;
+			statystyki.wczytaj_dane(nazwa_laczona);
+		}
+		else
+			cout << "blad pliku: " + nazwa_pliku << endl;
+
+		plik.close();
 	}
 };
 

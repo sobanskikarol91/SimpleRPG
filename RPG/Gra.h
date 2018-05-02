@@ -171,15 +171,7 @@ public:
 
 	void zapisz() 
 	{
-		fstream plik("zapis.txt", std::ios::out);
 
-		if (plik.good()) // sprawdzenie czy udalo sie uzyskac dostep do pliku
-		{	
-			nacisnij_klawisz();
-			plik << gracz;
-			cout << "Zapisano gre...";
-		}
-		plik.close();
 	}
 
 	void wczytaj() {};

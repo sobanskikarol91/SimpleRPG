@@ -34,18 +34,4 @@ protected: // protected bo metoda ta bedzie uzywana jedynie w klasie Przeciwnika
 		Kostka kostka(1, 3);
 		return kostka.losuj();
 	}
-
-	// Przeciazenie operatorow zapisu do pliku
-	friend ostream & operator<<(ostream & plik, const Postac & s)
-	{
-		return	plik << s.nazwa << " " << s.statystyki;
-	}
-
-	// Przeciazenie operatorow odczytu z pliku
-	friend istream & operator>>(istream & plik, Postac & s)
-	{
-		string linia;
-		while (getline(plik, linia));
-		return plik;
-	}
 };

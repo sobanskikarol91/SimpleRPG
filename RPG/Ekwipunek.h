@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Ekwipunek : public Menu
+class Ekwipunek : public Menu, public IPlik
 {
 	// spis wszystkich przedmiotow w ekwipunku
 	vector<Przedmiot> przedmioty;
@@ -67,7 +67,7 @@ public:
 
 		return suma;
 	}
-	
+
 	void menu()
 	{
 		przegladaj();
@@ -110,13 +110,46 @@ public:
 		menu();
 	}
 
-	friend ostream & operator<<(ostream & plik, const Ekwipunek & e)
+	virtual void zapisz_dane(string nazwa_pliku)
 	{
-		// zapisujemy wszystkie przedmioty do pliku
-		for (unsigned int i = 0; i < e.przedmioty.size(); i++)
-			plik << e.przedmioty[i] << endl;
+		fstream plik;
+		string nazwa_laczona = nazwa_pliku + "_ekwipunek";
+		plik.open(nazwa_laczona + ".txt", ios::out);
 
-		return plik;
+		if (plik.good() == true)
+		{
+			
+
+			for (int i = 0; i < przedmioty.size(); i++)
+			{
+				// przechowujemy nazwy przedmiotow w ekwipunku;
+				plik << przedmioty[i].pobierz_nazwa() << " ";
+				przedmioty[i].zapisz_dane(nazwa_laczona);
+			}
+		}
+
+		plik.close();
+	}
+
+	virtual void wczytaj_dane(string nazwa_pliku)
+	{
+		fstream plik;
+		string nazwa_laczona = nazwa_pliku + "_ekwipunek";
+		plik.open(nazwa_laczona + ".txt", ios::in);
+
+		if (plik.good() == true)
+		{
+			for (int i = 0; i < przedmioty.size(); i++)
+			{
+				string nazwa_przedmiotu;
+				plik >> nazwa_przedmiotu;
+				przedmioty[i].wczytaj_dane(nazwa_laczona+ + "_" + nazwa_przedmiotu);
+			}
+		}
+		else
+			cout << "blad pliku: " + nazwa_pliku << endl;
+
+		plik.close();
 	}
 };
 
