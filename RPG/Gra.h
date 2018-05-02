@@ -23,10 +23,6 @@ class Gra : IPlik
 	// spis wszystkich lokalizacji w grze
 	vector <Lokalizacja> lokalizacje;
 public:
-	Gra()
-	{
-		stworz_lokalizacje();
-	}
 
 	void stworz_postac()
 	{
@@ -40,8 +36,8 @@ public:
 		ekwipunek.dodaj_przedmiot(Przedmiot("Miecz", Statystyki(0, 1, 0, 0, 0)));
 
 		// wywolujemy konstruktor gracza podajac odpowiednie parametry
-		gracz = Gracz(nazwa, Statystyki(10, 2, 2, 2, 1), ekwipunek);
-		menu_glowne();
+		gracz = Gracz(nazwa, Statystyki(10, 5, 5, 5, 1), ekwipunek);
+		cout << "Postac stworzona! Witaj " << gracz.pobierz_nazwa() << "!" << endl;
 	}
 
 	// Tworzymy lokalizacje nadajac im nazwe, opis, i potwora jaki strzerze to miejsce i przedmiot do zdobycia
@@ -52,26 +48,26 @@ public:
 			Szkielet("Szkielet", Statystyki(10, 2, 2, 2, 1)),
 			Przedmiot("Helm", Statystyki(0, 0, 0, 1, 0))));
 
-				lokalizacje.push_back(Lokalizacja("Trakt kupiecki",
-					"Spogladajac na polnocny wschod widzisz martwego czlowieka, ktory lezy we wlasnej krwi, praktycznie bez odzienia. Na trawie dostrzegasz slady walki oraz rozerwany, mieszek zlota. ",
-					Bandyta("Bandyta", Statystyki(10, 2, 2, 2, 1)),
-					Przedmiot("Zbroja", Statystyki(0, 0, 0, 2, 0))));
-				/*
-				lokalizacje.push_back(Lokalizacja("Las",
-					"Patrzac na polnocny zachod, dostrzegasz gesty las. Drzewa sa poranione i ociekajace zywica. Masz wrazenie jakby ktos niedawno ostrzyl sobie na nich pazury.",
-					Wilk("Wilk", Statystyki(10, 2, 2, 2, 1)),
-					Przedmiot("Topor", Statystyki(0, 0, 1, 0, 0))));
+		lokalizacje.push_back(Lokalizacja("Trakt",
+			"Spogladajac na polnocny wschod widzisz martwego czlowieka, ktory lezy we wlasnej krwi, praktycznie bez odzienia. Na trawie dostrzegasz slady walki oraz rozerwany, mieszek zlota. ",
+			Bandyta("Bandyta", Statystyki(10, 2, 2, 2, 1)),
+			Przedmiot("Zbroja", Statystyki(0, 0, 0, 2, 0))));
 
-				lokalizacje.push_back(Lokalizacja("Pole bitwy",
-					"Na Zachodzie dostrzegasz wydeptane na drodze glebokie slady po ludzkich butach. Jednego jestes pewien, ktos bardzo obladowany musial udac sie ta droga.",
-					Zbrojny("Zbrojny", Statystyki(10, 2, 2, 2, 1)),
-					Przedmiot("Naszyjnik", Statystyki(0, 2, 2, 0, 0))));
+		lokalizacje.push_back(Lokalizacja("Las",
+			"Patrzac na polnocny zachod, dostrzegasz gesty las. Drzewa sa poranione i ociekajace zywica. Masz wrazenie jakby ktos niedawno ostrzyl sobie na nich pazury.",
+			Wilk("Wilk", Statystyki(10, 2, 2, 2, 1)),
+			Przedmiot("Topor", Statystyki(0, 0, 1, 0, 0))));
+		/*
+		lokalizacje.push_back(Lokalizacja("Pobojowisko",
+			"Na Zachodzie dostrzegasz wydeptane na drodze glebokie slady po ludzkich butach. Jednego jestes pewien, ktos bardzo obladowany musial udac sie ta droga.",
+			Zbrojny("Zbrojny", Statystyki(10, 2, 2, 2, 1)),
+			Przedmiot("Naszyjnik", Statystyki(0, 2, 2, 0, 0))));
 
-				lokalizacje.push_back(Lokalizacja("Zamek",
-					"Daleko na polnocy dostrzegasz ogromne ruiny, ktore kiedys musialy byc czescia zamku. Choc piekno i potega tego budynku dawno miely, masz wrazenie, ze to miejsce nie jest do konca opustoszale.",
-					Wladca("Wladca", Statystyki(10, 2, 2, 2, 1)),
-					Przedmiot("Kamien teleportacyjny", Statystyki(0, 0, 0, 0, 0))));
-					*/
+		lokalizacje.push_back(Lokalizacja("Zamek",
+			"Daleko na polnocy dostrzegasz ogromne ruiny, ktore kiedys musialy byc czescia zamku. Choc piekno i potega tego budynku dawno miely, masz wrazenie, ze to miejsce nie jest do konca opustoszale.",
+			Wladca("Wladca", Statystyki(10, 2, 2, 2, 1)),
+			Przedmiot("Kamien teleportacyjny", Statystyki(0, 0, 0, 0, 0))));
+			*/
 	}
 
 	void wybierz_droge()
@@ -109,8 +105,7 @@ public:
 
 			// zwiekszamy poziom gracza po wygranej walce
 			gracz.zwieksz_poziom();
-			koloruj_txt("Wykonano automatyczny zapis!", SELEDYNOWY);
-			nacisnij_klawisz();
+			zapisz_dane("zapis/");
 			sprawdz_warunki_ukonczenia_gry();
 			break;
 		}
@@ -168,7 +163,6 @@ public:
 
 	void rozpocznij_gre()
 	{
-
 		cout << "1) Stworz nowa postac" << endl;
 		cout << "2) Wczytaj gre" << endl;
 		cout << "3) Wyjscie z gry" << endl;
@@ -178,14 +172,18 @@ public:
 		{
 		case 1:
 			stworz_postac();
+			stworz_lokalizacje();
+			zapisz_dane("zapis/");
+			wczytaj_dane("zapis/");
 			break;
 		case 2:
-			wczytaj_dane("gra");
+			wczytaj_dane("zapis/");
 			break;
 		default:
 			exit(0);
 			break;
 		}
+		menu_glowne();
 	}
 
 	void wyjscie()
@@ -201,17 +199,21 @@ public:
 
 		if (plik.good() == true)
 		{
+			string nazwa_gracza = gracz.pobierz_nazwa();
+			plik << nazwa_gracza << " \n";
+			gracz.zapisz_dane(nazwa_pliku);
+
 			for (int i = 0; i < lokalizacje.size(); i++)
 			{
 				plik << lokalizacje[i].pobierz_nazwa() << " ";
 				lokalizacje[i].zapisz_dane(nazwa_pliku);
 			}
-
-			string nazwa_gracza = gracz.pobierz_nazwa();
-			plik << nazwa_gracza << " \n";
-			gracz.zapisz_dane(nazwa_pliku);
+			koloruj_txt("Wykonano automatyczny zapis!", SELEDYNOWY);
 		}
+		else
+			cout << "Blad zapisy Gry!";
 
+		nacisnij_klawisz();
 		plik.close();
 	}
 
@@ -223,18 +225,25 @@ public:
 		if (plik.good() == true)
 		{
 			string nazwa_lokalizacji, nazwa_gracza;
-			//plik >> nazwa_gracza;
-			//gracz.wczytaj_dane(nazwa_pliku + "_" + nazwa_gracza);
+			plik >> nazwa_gracza;
+			gracz.wczytaj_dane(nazwa_pliku + "_" + nazwa_gracza);
 
-			for (int i = 0; i < lokalizacje.size(); i++)
+			lokalizacje.clear();
+
+			while (true)	// niekonczoaca sie petla
 			{
 				plik >> nazwa_lokalizacji;
-				lokalizacje[i].wczytaj_dane(nazwa_pliku + "_" + nazwa_lokalizacji);
+				if (plik.fail()) break; // gdy skoncza sie dane do wczytywania wychodzimy z petli
+				Lokalizacja nowa;
+				nowa.wczytaj_dane(nazwa_pliku + "_" + nazwa_lokalizacji);
+				lokalizacje.push_back(nowa);
 			}
+			koloruj_txt("Wczytanie zakonczone sukcesem!", SELEDYNOWY);
 		}
 		else
-			cout << "blad pliku: " + nazwa_pliku << endl;
+			cout << "Gra blad pliku: " + nazwa_pliku << endl;
 
+		nacisnij_klawisz();
 		plik.close();
 	}
 };

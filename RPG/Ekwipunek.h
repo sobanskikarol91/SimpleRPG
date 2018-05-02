@@ -121,6 +121,7 @@ public:
 			for (int i = 0; i < przedmioty.size(); i++)
 			{
 				// przechowujemy nazwy przedmiotow w ekwipunku;
+				cout << "Zapisuje jako: " << przedmioty[i].pobierz_nazwa();
 				plik << przedmioty[i].pobierz_nazwa() << " ";
 				przedmioty[i].zapisz_dane(nazwa_laczona);
 			}
@@ -135,13 +136,19 @@ public:
 		string nazwa_laczona = nazwa_pliku + "_ekwipunek";
 		plik.open(nazwa_laczona + ".txt", ios::in);
 
+		przedmioty.clear();
 		if (plik.good() == true)
 		{
-			for (int i = 0; i < przedmioty.size(); i++)
+			while (true) // niekonczaca sie petla
 			{
 				string nazwa_przedmiotu;
 				plik >> nazwa_przedmiotu;
-				przedmioty[i].wczytaj_dane(nazwa_laczona + "_" + nazwa_przedmiotu);
+				if (plik.fail()) // gdy skoncza sie dane wychodzimy z petli
+					break;
+				Przedmiot nowy;
+				nowy.wczytaj_dane(nazwa_laczona + "_" + nazwa_przedmiotu);
+
+				przedmioty.push_back(nowy);
 			}
 		}
 		else

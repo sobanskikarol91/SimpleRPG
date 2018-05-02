@@ -168,7 +168,7 @@ public:
 		string nazwa_laczona = nazwa_pliku;
 		plik.open(nazwa_laczona + ".txt", ios::in);
 
-		if (plik.good() == true)
+		if (plik.good())
 		{
 			string przeciwnik_nazwa, przedmiot_nazwa;
 			plik >> nazwa  >> przeciwnik_nazwa >> przedmiot_nazwa;
@@ -176,7 +176,7 @@ public:
 			przedmiot.wczytaj_dane(nazwa_laczona + "_" + przedmiot_nazwa);
 		}
 		else
-			cout << "blad pliku: " + nazwa_laczona << endl;
+			cout << "Lokalizacja blad pliku: " + nazwa_laczona << endl;
 
 		plik.close();
 	}

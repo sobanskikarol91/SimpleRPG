@@ -20,6 +20,16 @@ static void koloruj_txt(string tekst, KOLOR kolor, bool enter = true)
 // od tego czasu skladnia w konsoli bedize koloowana wedlug wybranego koloru
 static void zmien_kolor_txt(KOLOR kolor)
 {
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), kolor ); // koloruj  na  wybrany kolor
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), kolor); // koloruj  na  wybrany kolor
+}
+
+// kolorujemy tylko dodatnie wartosci przyda sie przy statystykach przedmiotow aby wyodrebnic te wieksze od 0
+static void koloruj_dodatnie(int wartosc, KOLOR kolor)
+{
+	if (wartosc > 0)
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), kolor); // koloruj  na zielono
+
+	cout << wartosc;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), ZOLTY);    // koloruj  na zolto
 }
 

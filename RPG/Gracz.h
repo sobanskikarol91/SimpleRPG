@@ -121,6 +121,7 @@ public:
 		string nazwa_laczona = nazwa_pliku;
 		plik.open(nazwa_laczona + ".txt", ios::in);
 
+		
 		if (plik.good() == true)
 		{
 			plik >> nazwa;
@@ -128,7 +129,7 @@ public:
 			statystyki.wczytaj_dane(nazwa_laczona);
 		}
 		else
-			cout << "blad pliku: " + nazwa_laczona << endl;
+			cout << "Gracz blad pliku: " + nazwa_laczona << endl;
 
 		plik.close();
 	}

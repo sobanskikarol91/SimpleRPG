@@ -59,7 +59,7 @@ public:
 
 		if (plik.good() == true)
 		{
-			plik >> nazwa_pliku >> wyposazony;
+			plik >> nazwa >> wyposazony;
 			statystyki.wczytaj_dane(nazwa_laczona);
 		}
 		else
