@@ -36,7 +36,7 @@ public:
 		ekwipunek.dodaj_przedmiot(Przedmiot("Miecz", Statystyki(0, 1, 0, 0, 0)));
 
 		// wywolujemy konstruktor gracza podajac odpowiednie parametry
-		gracz = Gracz(nazwa, Statystyki(10, 3, 3, 3, 1), ekwipunek);
+		gracz = Gracz(nazwa, Statystyki(10, 3, 3, 1, 1), ekwipunek);
 		cout << "Postac stworzona! Witaj " << gracz.pobierz_nazwa() << "!" << endl;
 	}
 
