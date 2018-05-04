@@ -27,7 +27,6 @@ public:
 	void stworz_gracza()
 	{
 		string nazwa;
-		zmien_kolor_txt(ZOLTY); // kolorujemy tekst od tej pory na zolto
 		cout << "Stworz nowa postac" << endl << "Imie Twojego bohatera brzmi: ";
 		cin >> nazwa;
 
@@ -161,6 +160,7 @@ public:
 
 	void rozpocznij_gre()
 	{
+		zmien_kolor_txt(ZOLTY); // kolorujemy tekst od tej pory na zolto
 		cout << "1) Stworz nowa postac" << endl;
 		cout << "2) Wczytaj gre" << endl;
 		cout << "3) Wyjscie z gry" << endl;

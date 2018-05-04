@@ -20,6 +20,7 @@ public:
 
 	void informacja()
 	{
+		zmien_kolor_txt(ZOLTY); // kolorujemy na zolto
 		cout << "Poziom: "; koloruj_dodatnie(poziom);
 		cout << "HP: "; koloruj_dodatnie(zycie);
 		cout << "Sila: "; koloruj_dodatnie(sila);

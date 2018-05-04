@@ -31,6 +31,7 @@ public:
 			if (wyposazony)	koloruj_txt(" (Wyposazony)", ZIELONY);
 			else	koloruj_txt(" (Nie wyposazony)", CZERWONY);
 		}
+
 		statystyki.informacja();
 	}
 

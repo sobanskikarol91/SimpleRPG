@@ -201,7 +201,6 @@ public:
 				opis += wyraz + " ";
 			}
 		
-
 			przeciwnik.wczytaj_dane(nazwa_laczona + "_" + przeciwnik_nazwa);
 			przedmiot.wczytaj_dane(nazwa_laczona + "_" + przedmiot_nazwa);
 		}
