@@ -13,27 +13,17 @@ protected:
 	Statystyki statystyki;
 
 public:
-	Postac() :nazwa("Bezimienny") {};
+	Postac();
 	// konstruktor z lista inicjalizacyjna sluzacy do tworzenia postaci 
-	Postac(string nazwa, Statystyki statystyki) :
-		nazwa(nazwa), statystyki(statystyki) {}
-
+	Postac(string nazwa, Statystyki statystyki);
 
 	// Gracz i przeciwnik beda implementowac inaczej ta metode, dlatego jest czysto wirtualna przez co klasa jest abstrakcyjna
 	virtual int atak() = 0;
 	Statystyki pobierz_statystyki() { return statystyki; }
 	string pobierz_nazwa() { return nazwa; }
-	void informacje()
-	{
-		cout << nazwa << endl;
-		statystyki.informacja();
-	}
+	void informacje();
 	void ustaw_statystyki(Statystyki wartosc) { statystyki = wartosc; }
 
 protected: // protected bo metoda ta bedzie uzywana jedynie w klasie Przeciwnika i Gracza
-	int modyfikator_obrazen()
-	{
-		Kostka kostka(1, 3);
-		return kostka.losuj();
-	}
+	int modyfikator_obrazen();
 };

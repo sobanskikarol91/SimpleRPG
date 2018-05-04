@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <sstream> // do pracy ze strumieniem
 #include <string>
 #include <fstream>
 #include "IPlik.h"
@@ -14,21 +13,10 @@ class Statystyki
 
 public:
 	// domyslny konstruktor ustawia wszystkie wartosci nazero
-	Statystyki() : zycie(0), sila(0), zrecznosc(0), obrona(0), poziom(0) {};
-	Statystyki(int zycie, int sila, int zrecznosc, int obrona, int poziom)
-		: zycie(zycie), sila(sila), zrecznosc(zrecznosc), obrona(obrona), poziom(poziom) {};
+	Statystyki();
+	Statystyki(int zycie, int sila, int zrecznosc, int obrona, int poziom);
 
-	void informacja()
-	{
-		zmien_kolor_txt(ZOLTY); // kolorujemy na zolto
-		cout << "Poziom: "; koloruj_dodatnie(poziom);
-		cout << "HP: "; koloruj_dodatnie(zycie);
-		cout << "Sila: "; koloruj_dodatnie(sila);
-		cout << "Obrona: "; koloruj_dodatnie(obrona);
-		cout << "Zrecznosc: "; koloruj_dodatnie(zrecznosc);
-		cout << endl;
-	}
-
+	void informacja();
 	// gettery
 	int pobierz_zycie() { return zycie; }
 	int pobierz_sila() { return sila; }
@@ -43,48 +31,11 @@ public:
 	void dodaj_obrona(int wartosc) { obrona += wartosc; }
 	// poziom zwiekszamy zawsze o jeden
 	void dodaj_poziom() { poziom++; }
-
 	// operator +=, definiuje jak mamy dodac do jednego skladnika drugi
-	Statystyki& operator+= (Statystyki const& s)
-	{
-		// dodajemy poszczegolne skladowe statystyk do siebie i zwracamy rezultat jako nowy obiekt
-		zycie += s.zycie;
-		sila += s.sila;
-		zrecznosc += s.zrecznosc;
-		obrona += s.obrona;
-		// poziomu nie dodajemy
-		return *this;
-	}
+	Statystyki& operator+= (Statystyki const& s);
 
 	// operator dodawania opisuje jak mamy dodawac dwa skladniki
-	Statystyki operator+ (Statystyki const& s)
-	{
-		return Statystyki(zycie + s.zycie, sila + s.sila, zrecznosc + s.zrecznosc, obrona + s.obrona, 0); // poziomu nie dodajemy
-	}
-
-	virtual void zapisz_dane(string nazwa_pliku)
-	{
-		fstream plik;
-		plik.open(nazwa_pliku + "_statystyki" + ".txt", ios::out);
-
-		if (plik.good() == true)
-			plik << zycie << " " << sila << " " << zrecznosc << " " << obrona << " " << poziom;
-
-		plik.close();
-	}
-
-	virtual void wczytaj_dane(string nazwa_pliku)
-	{
-		fstream plik;
-		plik.open(nazwa_pliku + "_statystyki" + ".txt", ios::in);
-
-		if (plik.good() == true)
-		{
-			plik >> zycie >> sila >> zrecznosc >> obrona >> poziom;
-		}
-		else
-			cout << "blad pliku: " + nazwa_pliku << endl;
-
-		plik.close();
-	}
+	Statystyki operator+ (Statystyki const& s);
+	virtual void zapisz_dane(string nazwa_pliku);
+	virtual void wczytaj_dane(string nazwa_pliku);
 };
