@@ -13,23 +13,30 @@ using namespace sf; // do sfmla
 
 int main()
 {
-	//srand(time(NULL));	// pozwala na losowanie psueudolosowych liczb, przyda sie przy  rzucie kostka
+	srand(time(NULL));	// pozwala na losowanie psueudolosowych liczb, przyda sie przy rzucie kostka
 
-	RenderWindow window{ VideoMode{800,600}, "RPG" };
-	window.setFramerateLimit(60); // 60 klatek na sekunde
-	Event event; // interakcja myszy z ekranem
+	//RenderWindow window{ VideoMode{800,600}, "RPG" };
+	//window.setFramerateLimit(60); // 60 klatek na sekunde
+	//Event event; // interakcja myszy z ekranem
 
+	/*
 	while (true)
 	{
-		window.clear(Color::Black); // wypelnij na czarno ekran
-		window.pollEvent(event);
+		//window.clear(Color::Black); // wypelnij na czarno ekran
+		//window.pollEvent(event);
+
+		// gdy gracz nacisnal zamkniecie okna
+		if (event.type == Event::Closed)
+		{
+			window.close();
+			break;
+		}
 		window.display(); // wyswietl narysowane obiekty
+	}*/
 
-	}
-
-	//Gra gra;
-	//gra.rozpocznij_gre();
-	//system("pause");
+	Gra gra;
+	gra.rozpocznij_gre();
+	system("pause");
 
 	return 0;
 }

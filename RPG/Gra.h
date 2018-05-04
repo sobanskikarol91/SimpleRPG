@@ -37,6 +37,7 @@ public:
 
 		// wywolujemy konstruktor gracza podajac odpowiednie parametry
 		gracz = Gracz(nazwa, Statystyki(10, 3, 3, 1, 1), ekwipunek);
+		system("cls");
 		cout << "Postac stworzona! Witaj " << gracz.pobierz_nazwa() << "!" << endl;
 	}
 
@@ -171,6 +172,7 @@ public:
 			stworz_gracza();
 			stworz_lokalizacje();
 			zapisz_dane("zapis/");
+			wczytaj_dane("zapis/");
 			break;
 		case 2:
 			wczytaj_dane("zapis/");

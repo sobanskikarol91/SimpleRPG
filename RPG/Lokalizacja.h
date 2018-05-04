@@ -169,7 +169,7 @@ public:
 			plik << nazwa << endl;
 			plik << przeciwnik.pobierz_nazwa() << endl;
 			plik << przedmiot.pobierz_nazwa() << endl;
-
+			plik << opis;
 			przeciwnik.zapisz_dane(nazwa_laczona);
 			przedmiot.zapisz_dane(nazwa_laczona);
 		}
@@ -183,10 +183,25 @@ public:
 		string nazwa_laczona = nazwa_pliku;
 		plik.open(nazwa_laczona + ".txt", ios::in);
 
+
+
 		if (plik.good())
 		{
 			string przeciwnik_nazwa, przedmiot_nazwa;
+
 			plik >> nazwa >> przeciwnik_nazwa >> przedmiot_nazwa;
+			
+			string wyraz; // zapamietujemy wyraz
+
+			// teraz musimy wczytac caly opis lokalizacji, dlatego pobieramy po wyrazie i dodajemy odstep. nastepnie dodajemy w petli do opisu.
+			// wykonujemy to tak dlugo az nie wczytamy wszystkich danych.
+			while (plik.good())
+			{
+				plik >> wyraz; 
+				opis += wyraz + " ";
+			}
+		
+
 			przeciwnik.wczytaj_dane(nazwa_laczona + "_" + przeciwnik_nazwa);
 			przedmiot.wczytaj_dane(nazwa_laczona + "_" + przedmiot_nazwa);
 		}
