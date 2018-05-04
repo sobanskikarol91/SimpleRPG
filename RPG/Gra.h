@@ -172,7 +172,6 @@ public:
 			stworz_gracza();
 			stworz_lokalizacje();
 			zapisz_dane("zapis/");
-			wczytaj_dane("zapis/");
 			break;
 		case 2:
 			wczytaj_dane("zapis/");
@@ -186,7 +185,7 @@ public:
 
 	void wyjscie()
 	{
-		cout << "Zegnaj";
+		cout << "(Wyjscie) Twoja podroz dobiegla konca." << endl; 
 		nacisnij_klawisz();
 		exit(0);
 	}
