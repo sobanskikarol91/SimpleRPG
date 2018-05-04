@@ -45,6 +45,7 @@ public:
 		{
 			Przedmiot  znalezisko = przeszukanie();
 			gracz->otrzymuje_przedmiot(znalezisko);
+			znalezisko.pobierz_okno().wyswietl();
 			cout << "Dodajesz przedmiot do ekwipunku." << endl;
 			cout << "Twoje odglosy, zbudzily straznika! " << endl << endl;
 			return menu_wyboru_walki(gracz);
@@ -82,13 +83,13 @@ public:
 		zmien_kolor_txt(ZOLTY);
 		cout << "==============================================================" << endl;
 
-
 		// gdy gracz ma wiecej zrecznosci zwracamy true
 		return zrecznosc_gracza > zrecznosc_potwora;
 	}
 
 	STAN walka(Gracz * gracz)
 	{
+		przeciwnik.pobierz_okno().wyswietl();
 		int sila_potwory = przeciwnik.atak();
 		int sila_gracza = gracz->atak();
 
@@ -105,8 +106,8 @@ public:
 		cout << "==============================================================" << endl;
 
 		zmien_kolor_txt(ZIELONY);
-		cout << "Sila " << gracz->pobierz_nazwa()   << " " << sila_gracza << endl;
-		cout << "Obrona " << gracz->pobierz_nazwa() <<  " " << obrona_gracza << endl;
+		cout << "Sila " << gracz->pobierz_nazwa() << " " << sila_gracza << endl;
+		cout << "Obrona " << gracz->pobierz_nazwa() << " " << obrona_gracza << endl;
 		zmien_kolor_txt(ZOLTY);
 
 		cout << "==============================================================" << endl;
@@ -128,12 +129,10 @@ public:
 	{
 		cout << "Na Twojej drodze staje: " << endl;
 
-		zmien_kolor_txt(CZERWONY);
-		przeciwnik.pobierz_statystyki();
-		zmien_kolor_txt(ZOLTY);
+		koloruj_txt(przeciwnik.pobierz_nazwa(), CZERWONY);
 
-		cout << "1) (Walka) Zrobie Ci z lba popielniczke AGRRR!! " << endl;
-		cout << "2) (Ucieczka) Strasznie napakowany ten kolo, chyba wroce pozniej..." << endl;
+		cout << "1) (Walka) Dobadz broni" << endl;
+		cout << "2) (Ucieczka) Wycofaj sie" << endl;
 
 		int wybor = wybierz_opcje(2, 1);
 		switch (wybor)
@@ -183,24 +182,22 @@ public:
 		string nazwa_laczona = nazwa_pliku;
 		plik.open(nazwa_laczona + ".txt", ios::in);
 
-
-
 		if (plik.good())
 		{
 			string przeciwnik_nazwa, przedmiot_nazwa;
 
 			plik >> nazwa >> przeciwnik_nazwa >> przedmiot_nazwa;
-			
+
 			string wyraz; // zapamietujemy wyraz
 
 			// teraz musimy wczytac caly opis lokalizacji, dlatego pobieramy po wyrazie i dodajemy odstep. nastepnie dodajemy w petli do opisu.
 			// wykonujemy to tak dlugo az nie wczytamy wszystkich danych.
 			while (plik.good())
 			{
-				plik >> wyraz; 
+				plik >> wyraz;
 				opis += wyraz + " ";
 			}
-		
+
 			przeciwnik.wczytaj_dane(nazwa_laczona + "_" + przeciwnik_nazwa);
 			przedmiot.wczytaj_dane(nazwa_laczona + "_" + przedmiot_nazwa);
 		}

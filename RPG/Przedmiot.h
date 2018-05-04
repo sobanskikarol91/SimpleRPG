@@ -4,41 +4,29 @@
 #include "Statystyki.h"
 #include "Kolorowanie.h"
 #include "IPlik.h"
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-using namespace sf;
+
+#include "Okno.h"
 using namespace std;
 
 
-class Przedmiot  // dziedziczymy po interfejsie rysowania
+class Przedmiot
 {
 private:
 	string nazwa;
 	bool wyposazony; // czy gracz aktualnie wykorzystuje przedmiot
 	Statystyki statystyki;
-	Texture texture;
-	Sprite sprite;
+	Okno okno;
 
 public:
-	Przedmiot() :nazwa("Brak"), wyposazony(false) {}
-	Przedmiot(string nazwa, Statystyki statystyki) : nazwa(nazwa), statystyki(statystyki), wyposazony(false)
-	{
-		// konstruktor ustawia teksture przedmiotu
-		if (!texture.loadFromFile("grafika/" + nazwa)) // wczytaj teksture o danej nazwie z folderu grafika
-			cout << "Nie udalo sie wczytac tekstury " << nazwa;
+	Przedmiot() :nazwa("Brak"), wyposazony(false) {};
 
-		sprite.setTexture(texture);
-	}
+	Przedmiot(string nazwa, Statystyki statystyki) : okno(Okno(nazwa)), nazwa(nazwa), statystyki(statystyki), wyposazony(false){}
+
 
 	bool sprawdz_czy_wyposazony() { return wyposazony; }
 	void ustaw_wyposazony(bool stan) { wyposazony = stan; }
 	Statystyki pobierz_statystyki() { return statystyki; }
-	void draw(RenderTarget & target, RenderStates state) const
-	{
-		target.draw(sprite, state);
-	}
-
-
+	Okno pobierz_okno() { return okno; }
 
 	void informacja(bool wyposazony_informacja = true)
 	{
@@ -80,6 +68,7 @@ public:
 		{
 			plik >> nazwa >> wyposazony;
 			statystyki.wczytaj_dane(nazwa_laczona);
+			okno = Okno(nazwa); // tworzymy nowy obiekt okno ze sciezka;
 		}
 		else
 			cout << "Przedmiot blad pliku: " + nazwa_laczona << endl;

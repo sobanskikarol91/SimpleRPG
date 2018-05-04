@@ -1,14 +1,17 @@
 #include "Postac.h"
 #pragma once
 #include "IPlik.h"
+#include "Okno.h"
 
 class Przeciwnik : public Postac, IPlik
 {
+	Okno okno; // okno w ktorym bedize sie wyswietlac podobizna wroga
+
 public:
 	Przeciwnik() : Postac() {};
 	// konstruktur z lista inicjalizacyjna, w ktorej wywolujemy konstruktor klasy bazowej
 	Przeciwnik(string nazwa, Statystyki statystyki)
-		: Postac(nazwa,  statystyki){};
+		: Postac(nazwa,  statystyki), okno(Okno(nazwa)){};
 
 
 	virtual int atak()
@@ -41,10 +44,13 @@ public:
 		{
 			plik >> nazwa;
 			statystyki.wczytaj_dane(nazwa_laczona);
+			okno = Okno(nazwa); // tworzymy nowy obiekt okno ze sciezka;
 		}
 		else
 			cout << "Przeciwnik blad pliku: " + nazwa_pliku << endl;
 
 		plik.close();
 	}
+
+	Okno pobierz_okno() { return okno; }
 };

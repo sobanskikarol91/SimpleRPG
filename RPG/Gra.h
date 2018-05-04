@@ -95,7 +95,7 @@ public:
 		{
 		case WYGRANA:
 		{
-			koloruj_txt("(Wygrana) Ha! Zabijalem juz za mniej!", ZIELONY);
+			koloruj_txt("(Wygrana) Zabijalem juz za mniej!", ZIELONY);
 
 			nacisnij_klawisz();
 			// zdobylismy ta lokalizacje juz, wiec usuwamy ja z listy aby wiecej nie pokazywala nam sie

@@ -50,7 +50,6 @@ public:
 		return aktywne;
 	}
 
-	// przesylamy wskaznik na przedmiot
 	void dodaj_przedmiot(Przedmiot nowyPrzedmiot)
 	{
 		przedmioty.push_back(nowyPrzedmiot);
@@ -75,8 +74,8 @@ public:
 		cout << przedmioty.size() << ") Exit" << endl;
 		cout << "Wybierz numer przedmiotu: ";
 
-		// + 1 dlatego ze jeszcze opcja exit
 		int wybor_przedmiotu = wybierz_opcje(przedmioty.size());
+
 		// jezeli wybral ostatnia opcje to znaczy ze jest to exit
 		if (wybor_przedmiotu == przedmioty.size())
 			return;
