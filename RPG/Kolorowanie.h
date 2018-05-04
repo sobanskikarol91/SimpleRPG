@@ -1,4 +1,5 @@
 #pragma once
+#define NOMINMAX   // windows.h clashes with the STL, which frankly is a problem with windows.h.
 #include <Windows.h> // pozwala kolorowac skladnie
 #include <string>
 #include <iostream>

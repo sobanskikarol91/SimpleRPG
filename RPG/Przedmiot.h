@@ -4,22 +4,40 @@
 #include "Statystyki.h"
 #include "Kolorowanie.h"
 #include "IPlik.h"
-
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+using namespace sf;
 using namespace std;
 
-class Przedmiot
+
+class Przedmiot  // dziedziczymy po interfejsie rysowania
 {
 private:
 	string nazwa;
 	bool wyposazony; // czy gracz aktualnie wykorzystuje przedmiot
 	Statystyki statystyki;
+	Texture texture;
+	Sprite sprite;
 
 public:
 	Przedmiot() :nazwa("Brak"), wyposazony(false) {}
-	Przedmiot(string nazwa, Statystyki statystyki) : nazwa(nazwa), statystyki(statystyki), wyposazony(false) {}
+	Przedmiot(string nazwa, Statystyki statystyki) : nazwa(nazwa), statystyki(statystyki), wyposazony(false)
+	{
+		// konstruktor ustawia teksture przedmiotu
+		if (!texture.loadFromFile("grafika/" + nazwa)) // wczytaj teksture o danej nazwie z folderu grafika
+			cout << "Nie udalo sie wczytac tekstury " << nazwa;
+
+		sprite.setTexture(texture);
+	}
+
 	bool sprawdz_czy_wyposazony() { return wyposazony; }
 	void ustaw_wyposazony(bool stan) { wyposazony = stan; }
 	Statystyki pobierz_statystyki() { return statystyki; }
+	void draw(RenderTarget & target, RenderStates state) const
+	{
+		target.draw(sprite, state);
+	}
+
 
 
 	void informacja(bool wyposazony_informacja = true)
