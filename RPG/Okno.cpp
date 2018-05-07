@@ -10,7 +10,6 @@ void Okno::wyswietl()
 
 	sprite.setTexture(texture);
 
-
 	RenderWindow window{ VideoMode{ texture.getSize().x,texture.getSize().y }, "RPG" };
 	window.setFramerateLimit(60); // 60 klatek na sekunde
 	Event event; // interakcja myszy z ekranem

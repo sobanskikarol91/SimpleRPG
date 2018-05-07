@@ -73,38 +73,55 @@ bool Lokalizacja::proba_ucieczki(Gracz * gracz)
 	return zrecznosc_gracza > zrecznosc_potwora;
 }
 
+
 STAN Lokalizacja::walka(Gracz * gracz)
 {
 	przeciwnik.pobierz_okno().wyswietl();
-	int sila_potwory = przeciwnik.atak();
-	int sila_gracza = gracz->atak();
 
-	int obrona_potwora = przeciwnik.pobierz_statystyki().pobierz_obrona();
-	int obrona_gracza = gracz->pobierz_statystyki().pobierz_obrona();
+	int zycie_potwora = przeciwnik.pobierz_statystyki().pobierz_zycie();
+	int zycie_gracza = gracz->pobierz_statystyki().pobierz_zycie();
 
-	int obrazenia_gracza = sila_gracza - obrona_potwora;
-	int obrazenia_potwora = sila_potwory - obrona_gracza;
+	// wykonuj dopoki jakis nie padnie
+	while ( zycie_potwora> 0 && zycie_gracza >0)
+	{
+		int sila_potwory = przeciwnik.atak();
+		int sila_gracza = gracz->atak();
 
-	cout << "==============================================================" << endl;
-	zmien_kolor_txt(CZERWONY);
-	cout << "Sila potwora: " << sila_potwory << endl;
-	cout << "Obrona potwora: " << obrona_potwora << endl;
-	cout << "==============================================================" << endl;
+		int obrona_potwora = przeciwnik.pobierz_statystyki().pobierz_obrona();
+		int obrona_gracza = gracz->pobierz_statystyki().pobierz_obrona();
 
-	zmien_kolor_txt(ZIELONY);
-	cout << "Sila " << gracz->pobierz_nazwa() << " " << sila_gracza << endl;
-	cout << "Obrona " << gracz->pobierz_nazwa() << " " << obrona_gracza << endl;
+		int obrazenia_gracza = sila_gracza - obrona_potwora;
+		int obrazenia_potwora = sila_potwory - obrona_gracza;
+
+		cout << "==============================================================" << endl;
+		zmien_kolor_txt(CZERWONY);
+		cout << "Sila potwora: " << sila_potwory << endl;
+		cout << "Obrona potwora: " << obrona_potwora << endl;
+		cout << "==============================================================" << endl;
+
+		zmien_kolor_txt(ZIELONY);
+		cout << "Sila " << gracz->pobierz_nazwa() << " " << sila_gracza << endl;
+		cout << "Obrona " << gracz->pobierz_nazwa() << " " << obrona_gracza << endl;
+		zmien_kolor_txt(ZOLTY);
+
+		cout << "==============================================================" << endl;
+		zmien_kolor_txt(SELEDYNOWY);
+
+		zycie_potwora -= obrazenia_gracza; 
+		zycie_gracza -= obrazenia_gracza;
+
+		cout << "Obrazenia: " << gracz->pobierz_nazwa() << "  " << sila_gracza - obrona_potwora << " vs ";
+		cout << obrazenia_potwora << "  Potwor" << endl;
+
+		cout << "Zycie: " << gracz->pobierz_nazwa() << "  " << zycie_gracza << " vs ";
+		cout << zycie_potwora << "  Potwor" << endl;
+
+	}
+
+
 	zmien_kolor_txt(ZOLTY);
 
-	cout << "==============================================================" << endl;
-	zmien_kolor_txt(SELEDYNOWY);
-	cout << "Obrazenia: " << gracz->pobierz_nazwa() << "  " << sila_gracza - obrona_potwora << " vs ";
-	cout << obrazenia_potwora << "  Potwor" << endl;
-
-
-	zmien_kolor_txt(ZOLTY);
-	// bierzemy pod uwage wlasna obrone i sile atakujacego.
-	if (obrazenia_potwora >= obrazenia_gracza)
+	if (zycie_potwora >= zycie_gracza)
 		return STAN::PORAZKA;
 	else
 		return STAN::WYGRANA; // udalo sie wygrac wiec zwracamy taki stan

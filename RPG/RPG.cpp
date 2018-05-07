@@ -11,9 +11,6 @@ using namespace std;
 #include "Przedmiot.h"
 using namespace sf; // do sfmla
 
-
-
-
 int main()
 {
 	srand(time(NULL));	// pozwala na losowanie psueudolosowych liczb, przyda sie przy rzucie kostka

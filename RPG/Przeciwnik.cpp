@@ -5,7 +5,6 @@ Przeciwnik::Przeciwnik() : Postac() {};
 Przeciwnik::Przeciwnik(string nazwa, Statystyki statystyki)
 	: Postac(nazwa, statystyki), okno(Okno(nazwa)) {};
 
-
 int Przeciwnik::atak()
 {
 	return statystyki.pobierz_sila() + modyfikator_obrazen();
